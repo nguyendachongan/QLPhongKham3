@@ -1,0 +1,40 @@
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll.config
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.pdb
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.xml
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll.config
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.pdb
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.dll
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.xml
+D:\QLPhongKham\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\QLPhongKham\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
+D:\QLPhongKham\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
+D:\QLPhongKham\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll.config
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.pdb
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.dll
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.xml
+D:\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
+D:\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
+D:\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll.config
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.pdb
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.dll
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.xml
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
+D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb

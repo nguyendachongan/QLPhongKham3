@@ -1,0 +1,305 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+    <!-- text fonts -->
+    <link rel="stylesheet" href="../../assets/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../../assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link rel="stylesheet" href="../../assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="../../assets/css/ace-rtl.min.css" />
+    <style>
+        #myModal {
+            width: 1000px;
+            margin: auto;
+        }
+
+        #tb tr {
+            width: 100%;
+            display: inline-table;
+            table-layout: fixed;
+        }
+
+        #tb table {
+            height: 450px;
+            // <-- Select the height of the table display: -moz-groupbox;
+            // Firefox Bad Effect
+        }
+
+        #tb tbody {
+            overflow-y: scroll;
+            height: 400px;
+            // <-- Select the height of the body width: 100%;
+            position: absolute;
+        }
+    </style>
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    <script src="../../assets/js/ace-extra.min.js"></script>
+    <script src="../../assets/js/jquery-1.11.3.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin" ng-app="MyApp">
+    <div id="navbar" class="navbar navbar-default          ace-save-state">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                <span class="sr-only">Toggle sidebar</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-header pull-left">
+                <a href="index.html" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-leaf"></i>
+                        Quản lý phòng khám
+                    </small>
+                </a>
+            </div>
+
+
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <li class="light-blue dropdown-modal">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+                            <img class="nav-user-photo" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxATEhUTExIVFhUXFxUVGBYXGBUVFRUdGBUWFhYXGBUYHSggGBolHRUWITEhJSktLy4vFx8zODMtNygtLisBCgoKDg0OGxAQGy0mICYtLSstLS0tLSstLS0tLS0tLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABAYDBQcCAQj/xABAEAABAwICBwUFBgUEAgMAAAABAAIDBBEFIQYSMUFRYXETIoGRoQcyUrHBFDNCctHhI2KCkvEkorLwFdI0c4P/xAAbAQEAAwEBAQEAAAAAAAAAAAAAAgMEBQEGB//EADURAAICAQMCAggEBgMBAAAAAAABAgMRBBIxIUEFURMiMmFxgaGxBjOR8BQjQsHR4RVS8Rb/2gAMAwEAAhEDEQA/AO4oAgCAIAgCAIAgCAIAgCAICPW1sUTdeWRkbeL3Bo8zvXkpKKy2eqLfRFJxz2nU8Z1adhmd8Ru1n6lZZ6uK9nqaIaaT9roVKs04xKY5SiIcGAD1Nz8lllqbH3waY6eC7ELt6p5u+snP/wCj7eV7Kp2Sfd/qWKEV2RnipZN1TODye4fVebpeb/U92ryJ9PU18f3ddN/We0H++6mrrFxJkHXB8o2lPpvXw/exxzN4t7jv0JV8dXNcrJVLTRfHQtGCacUVQQ3X7KQ5akndueAdsJWqGohL3GadE4lmV5SEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEBWdNNKm0bA1gD53+4zh/O7kPVUXXKte8upqc37jl1dRzTHtZ5TI887hvIDcOi5spOTyzekorCNJVUhabheDIgmUSZsYJl4DYwSoDYQNc7YCUyMGd1I4jMeoTKGDS4phLrE6h62v52XuUxhonaL6bVFI4RykyQ7LE3ewfyk7RyK01aiUOj6oosojPqujOuYfXRzRtkicHMcLgj5HgeS6MZKSyjnyi4vDJKkeBAEAQBAEAQBAEAQBAEAQBAEAQBAYK+rZFG+V5s1jXPceTRcryTSWWepNvCOCV2JvqJn1EnvPOQ+Fv4WjoFx7Jucss6sIqKwiXR1tsjsUCWCVUUzXi7V7kjg0FZRFpuF6ecHikc5xDQCXHK29RZNFhhkpoB/FeHP+Bvetyyyv1UerPT7Lpcwe5EfEgegTaMmEaWvOyIeZTaMmeLS1v44iOhB9Cm09yZ5H0VVlrBrzsv3XeuTk6ocmfRPEpcOqRFKb08ptf8ACCcg8cDxHBadNdtljszPfVujnudeC6pzQgCAIAgCAIAgCAIAgCAIAgCAIAgKR7XK/s6Lswc5Xtaeje+fUN81m1UsQx5mjTLM8nIoZMlzToEpj14CzUcDIYu1mdbK9uHAW3lRz5HuCF9pmqfuIGNZ8cm//vK68lNR5Z6o54Pg0TqM3CVgceGs0dLgKPpl5DZglYdoRvmk/pZs/uI+i99J5HmCx0WjdKzZE0ni7vH1TLZFs2sdFGNjGjo0L3aR3HyXDonCzo2Hq0KW083FZx3QpjgXU/cdt1Pwu5D4T6J1JKRUTXyNa6CYFwFxY++xw2EHkmCZ2nQnEDPRQvJudXUJ5sOqfkuxRLdWmcu6O2bRvFaVBAEAQBAEAQBAEAQBAEAQBAEAQHLfbXL/APGZu/iO+QWLVvhGvSrk5i11liNhMpZhcdR814DcY5OZ6tkN+40tbbrmT9FD2YtkuXguVNEAAALAZALHyXsnxMUkitslxMV0UVSZKZGrlEqbM7YlYokHI99kpbTzceHRKLieqRzn2jYaGPZMBbXuHdRv9VW+jNEHlF29lYP2Bt975Lf3H9109J+X+pg1P5hb1pM4QBAEAQBAEAQBAEAQBAEAQBAEByz22MzpnfnHyKxavsa9L3OXrEaz0CgNvo84vqmE7cyfBqrt9hk4e0dHhCyIuZNiarIoqkybE1aIopkyZExXxRTJkpkatUSpsydkp7TzcY3xqDieplM9pMN6dvHXsPFrj9As1qxj4muh8/AuGimH9hSQxHaGAu6nM+pXWqjtgkc+2W6TZtlYVhAEAQBAEAQBAEAQBAEAQBAEAQHP/bNSa1JHJ8EoHQPBHzA81l1a9TJp0z9bBxu655tPbWE7AfIpk9wWfQ3DX9oZXNIABDb5Ek7cuFr+az3TWMItri+S9QKhEmTYQrolUidEFoiUSJ0QWiJRIlxhXxKmzLZSwRMUgUZIkiuYnEJa2lhIu1uvM4bu6LNv4/NUKO66K+ZpT21Sl8i3rpmAIAgCAIAgCAIAgCAIAgCAIAgCAIDUaW4Z9po54R7zmEt/M3vM/wBzQq7Y7oNE65bZJn56w5wErNYZawBB8swuPYm4vB1q2tyL7CAuajcyfAporZPgKkipk6Eq2JVImxFaIlEidEVoiymRLjcr4spaMt1PJHBikcoSZNI0uBt166ol3RsZCOp77/k3zUdMs2yl5dP39C294qjHz6lnW8xhAEAQBAEAQBAEAQBAEAQBAEAQBAEBwb2k4GaWsc5o/hykyt4Ak98eefiubqK9svidCie6PwNpQTazGu4gFcRrDaOunlZNnCV6iDJ0LlJFTJsTlZFlUkTYnLRFlMkS4nq6LKmiSyRXKRW0e+1UtxHaYppgASdgBPkoORJRMOhcR+z9odsz3yn+o930AWnSRxXnz6kdU/5mPLob5ajMEAQBAEAQBAEAQBAEAQBAEAQBAEAQGi0y0dZW0zojYPHejd8Lh9DsP7Ku2tTjgsrnslk5PgQkj14JWlskTrFp22Ozw2+i+e1VbjM7mnmpRwb6FyzotZNicpIraJsT1NMraJcb1bFlTRJZIrlIraM7ZVNSIOJ67VS3EdprcemJiLG+9KWxN6vOqfS6hJuXqrv0LK0k8vt1LbSwBjGsGxrQ0eAsu1FYWDmye55ZlXp4EAQBAEAQBAEAQBAEBra7H6OE2lqYWO+Fz2h39t7oCLFpfhrjYVkHi9rfV1kBt6eoY8azHte07C0hwPiEBlQBAEAQBAaPSDRqGoPaW1ZmggPG0j4XcRe3RZtTp43Rx3NGnvdUs9igxMNiRmAS023EL51waz7ju7kyRE9eIi0TIpFIg0So5FJMg0Z2SKxSK3EzNlU1IjtPXar3cebT5hcPbVbT+GBpefzvBa0eA1j5LVo4b7N3Zfcq1EtlePMty6xzggCAIAgCAIAgCAIDHUTtY1z3kNa0FzidgAFySgOWYrj9XiLnCF7qekaba4uHy9LZ+Gwb+CArcsGGxHVJc8jba7vO2SA+sqMMORZq9Wv+l0BNo8Oiv2lJO6N3GN/o4fQoCxYRp5PTubFXt1mHITsHq5o9bZ8igOkQyte0Oa4Oa4AhwNwQcwQRtCA9oAgCAIDjFPiBhqJL5sMjw4f1nNfOt4m/i/ud9LMF8Eb6Sma4B8ZBBzy2Hoozqz1iI2Y6SMDH2yO1UFjRIZIvckGjO2Ve5I4MglXuTzAfUAAknIC69yebSz6NUJihu4WfIe0dxF9jfAWC7+mq9HWk+TlaizfPpwbZaCgIAgCAIAgCAIAgCAo3tdrHtpGRNNu2laxx/lALreJDfIoCq6THsooadh1WkxxEjcHe8eqA6hhmA0kMbWRwx2AGeqCTzJOZQEPHxhsTf9RHDnsbqNL3dABdUXaiulZmy2umdj9VHPKnCo6iQOoaKSOx95rnAHw90LnvX3Wfkw/U1/wtcPzJGxm0SxGRtnsZbgXM+l1446+Xu/Q9T0kff+plpKbF6Ngaxjuzbcho1ZGjecgSQFU5a+vq+v6P7E0tLPoun0NnhWnwvqVMeruL2g5fmZt8vJW0+KrO21YIWaHpmDLrTzse0PY4OacwQbgrrRkpLMX0OfKLi8MyKR4afGtJ6OlF5pmg/CLvd/a0EjqVVO6EOjZJQk+EctximBPbMzZIS7jbWN/LNcvV0bfXjwzq6W/d6kuUYsNxSSE2GbTtafpwWWMmjVKKZZKeugn32dwOTv3U2ozK/Wien0jhszHkVTKmS4JqafJjuRtBCraa5JdGehKvDzBvdH8IMhEkg7gILQfxkbD+UHzK6eh0rk/SS47GHVXqK2R5LcuwcwIAgCAIAgCAIAgCAICuafYE6rpHMZ94wiWPm5oIt4guHUhAUOojbW0o/DIyzXg+8x7crkbbfqgNjQ6fSxU4p5Yz9qbZjXn3Ht2B/N3Lx5LLq7p1V5gsv7F+nrjOeJPBuMD0VLj9orSXvdmGE3tw1uJ5bAufVpVFem1L6+X7+xpt1OPUq4LQahrQALNG4ZDyCjb4k+KlhGdV56s89sTvWOWsvf8AUyWxH0Tu4qUddfH+r9RsizX4thFPVC0jdV+6RuTh+vQrStRTqfVtWH5koTnV1jx5FMFRWYXI5mTmOBLb37N3Bw4HiFUp3aGe19V9DW416mOVyajF9J62XJ8pa0/hZ3R6Zq6epss79PcZ1VGPY0ErQ4EHf/26pJG20Nrgdakl2G+pf1b9R4ro6WxSTrkZ7E4vfEmV+GmJ1iLtOw8f3WHUUOqWO3Y6VN6sjnuR/sTTxCoLtxOphO33ZnW4EX+akptEXjyNjFUTb3NP9NvqvfSMh0MpzzNss9gCrk8jc0XTBsbpJWNbDM11gANrSbDgbFfQU21tKMWcicJ53NG2V5UEAQBAEAQBAEAQBAEAQFJ030cAD62nk7GZou/LuTDg4fFwP+RCyyNcXKXCJQg5y2ooTcUilAZVR6hJydYhpPFrvwlK7I2R3ReUJwlB4kbmjxLEIAOxmbPHuZLmR0eDmqdRpYX+1kRk0a440HPLq5lQCT+CxYP0HRcmzwif9Mk/p/k3w1qisKODaYXpFBG8fZ53Ss2vic14c0byCQBlfcs1+htojvfBZG2F728Mv4lBAINwQCOh2LI2U7WYpJVW5FkYkfEKRtXC6F3vga0buDh9N3RdPSWrU1vTz55i/wC377EXmmSsXHc5VUxEXa4WLSQeRGRCppbTcH2NN0U8SRBcLLQZyPUazSJGGzmkEHopRk08oi1k6bgdVHW04cRn7rxva4bbfMdV2I7dRX1Micqp5RArMLfEc827nfrwK5F+nlU+vHmdOq+Ni955jYs5ayTGxCJkqIdZjm5jWBbfhcWJWrT6WVrzwjPdcoLHcoR1oZpGNJGq7LocwvLobJtIrrlmOS76NacvaQybvDZnt8D9Cr6dXOHSXVHk6Yy46M6LRVkcrQ9jrj1HIjcupCyM1mJjlFxeGSFMiEAQBAEAQBAEAQBAU72m1ZbBHGPxvueYYL/NzfJcrxazFaj5v7G/QQzNy8iVQ4PCaKGGWNrwW6zg4XzdmbHdmVmutlRTXCDw+WV2PfZJsrOJaB9nd9HO+MjPs3d9h5A7R43UqvFZLpYs/Ah6FN9DR0ZxFzSfs7ZgDYhhAeLcW/sunRqq7lmLIW0zreGfY62+u10Don6pbquFidYjMG2exZPE9RGNLimm30L9FW3YpdkdEggdHBCHbezaDyIAXC1FLqrhL/sv39DRGSnOWPMwySrC5F8YmOGp1XtdwI/dS09zrujNdmiU690GiqafUfZ1TyBk8B467D6hdrWw2anK7lNEt9GPIqL5DvHmvSoxkoeE7RHF/slSA4/wpLNdwHB3gT5FatLdsl14ZVbDKOxiEOGYBB8QV12k1hmRNp5RQsaxANnkjghuGHVLnODGA2BNic96up/DiuxZKe2L6pJZf+vqVW+Nei9Tblr5fv6GKkxZzHsM76cMJAIbrl2eW29stuxa/wD5vTqLcN7a88Y/TGfqZF45dKSUkkvnn7l0qKPkuckl0RvZyzSpgbWOtsLQeuVvouRrFi02Uv1SACspaWrQ3GZY5LB2QtcHYRexBVtNsq5JoSipxwzr4K7pzj6gCAIAgCAIAgCAIDn/ALU760HSX5s/ZcTxfmHz/sdPw/iXyLVE4FkZGzUZ8ll17zYvgjPFc/E+OesDZYompqtHI53F7HGOTeWm1+ZCv0+mlf7Elny7lv8AEOtYayjLhmh8UbxJK8yEZ97YOa30+FYe66XTy/yyuzWuS2wWDLi9aHOs3YMr8VzfFNZG6xKHCLtLS4xy+Wat8i5LkbVE8NNyBzC8h1kl70SfREH2nutLGRtEZ9Dkvp/E/wA6K9xz9F+XI5zBj9S94YI43k8nZdTfJT2rGSrc84NlXiMNALR2n8mQCrZJmonj1hZCJ0n2b6SdrAaeQ3miHc4vZu6luzpbmurpLt0dr5Rlthh5RWPaLQllQJM9WUA8tZoDT6aq+58EuU6NneL+j6/5PnfEa9tm7zKmV2TnneXVJFO2/v6oaethcr87njc8cZPqo5wsnLtN2WnjdxbbyP7rla9esma6H0ZqAVgNBOw99mTO4Rn5H9EJLuXr2S6UGaL7NM68kY7hO17BuJ3lvytwK62mv3eo+TFbDHrI6IthSEAQBAEAQBAEAQFM9p1IXQxyD8Dy08g8bfNrR4rk+LV5rUvJ/f8A8N+glibj5mXRuu7SkjO9n8J3VuzzaQVytRLdVCfu2v5cfQsnDFjXzJb5Vz3IsUSO+a29V72nlFqhkxTVbzkXE8iSlmptmsSk38ycKorqkRXOWZsuSPBco5JJE7A6fXlB3N7x8Ng8/kul4Rp3dqU+0er/ALfUzayzZU13fQp/tKrg+d41gAGiMOOwXNr+q6V0/TarK4z9iiqOygrrY207A2MZu2yHf4q+TbKsY4JUVK1rSb6ziDn+iieGluvAfKerfBMyeM2c0g9eIPIjJWVzcJZRGSysHUNKuxrsLdOzaG9q05Xa5uTmn1BX13guq26iDXEujORrKk4Pd26nIGUEnvFwNs7Zm9s7L712RxhI+e/iYLokdsM4kY17djmhw6EXHzX5rZBwk4PlPB9PGSlFSXco2njfunc3D5FczXromaqO5pY4mlpcXWttABJHPouaasGOXEIWwyta8uc9uqBYjl9VNReTxyWDDgda+nfHKw2cwh3XiPEZKKscZ7kNuY4Z+icNrWzRMlYe69ocPELvwkpRTRz2sPBJUjwIAgCAIAgCAICHi1C2eF8TtjgR0O0HwNlVdUrYOD7k65uElJHNtGao01Q+CXIOOo7+VzT3Xep818usVuVVnD59z7P99js2L0kVOJZ6m7TY9eRG4jkudfCVU9sv/V5o9rxJZRFc9ZnIvUTGXKOSaR4LlHJ7g9U8LpHBrRcn05nkrKaZ3zUK1lv99Tyc41x3S4LC/VpotRpu920/X9F9PPZ4fp/RQfrvl/3/AMHIzLUWb3wjjulLHPdJrD8ZJG/l5LDp5KMjZdHMOho6GvMf8KXvRnYd7f2XR6TWVyYs46M3NPOWd0m7Tm124hVkiHWMs48DmgI7hfJDw32h+MFjKikee5LG8tvsDw0n1A9Aur4Tfs1EE/NGTV17q38DURbugX6kz4OXcvmiFTrU2oTnG4s8NrfQr47xirZqHL/t1PqfDrd9C9xptPB3I/zH5L5vX+yvidWjllbhlLSCNq5hqTPGIRsGq9oADiQR8J5ckxlHrMKrJHW/ZDiBfTyQk/dPBHJslyB/c1/muvoJ5g4+X9zHqI4eS+reZwgCAIAgCAIAgCAqumejHbjtospmjMbNcDZ/UNy5uv0Xplvh7X3Nul1Po/Vlx9jQ4NjuXYztzabWPdc079UnYeS+e3bF6K6OY/WPw/wdGVeXvg8P6M3IomP+7lb+V/dd+6h/x9dvWixfCXRnn8RKH5kX8V1PX/g5+DfNe/8ACat9l+o/jqfP6GVmBaucsrWjgP1K0Q8EUOuosSXu/wBlctfnpXFslMrYowWwN6u/7tV1niFGkh6PSR6+f75KPRWWvda/kamdxLiXG548VyZTdj3SeWakklhGi0lwzWb2rRmB3hxHHwVkH2Jwl2OeYlRgbu6fRdGm3PxM11e1+4h0lUY/4cmcZ2H4TxH6LZ0msrkz+z0NlIcrE33tPFVEiPdeAxTDeNoUoycXlHjWVhkqmfdoK/V/DNYtXpo29+H8VyfCa/Tui+UO3K+DLTohUasr2bns1h1bt9D6Ln+N1bqlPyeP1Nng1vWVY07+7Z+f6L4rX+wvifT0csqYK5ZpPVe7NjPgGserv2Xr6RJd8GFVEjovsav2lTw1I/8Ak+31XS8O5kZtTwjqa6hkCAIAgCAIAgCAIAgNLpFgNPOxz5G2c1pOu3J2Qvnx8Vl1GlruWZLr5l9N86+DjdNj7hlrOA/uHqvmp6PPHU6sdTHuTmaQy2ymt6fRVrTyj0SZP0lb7nyHG5Na4l1jwJB9FCVGOrRJSi+iZY8IxpryAcncNx6LPOvCDiWCWPWbcdVCJSnh9TDCb5K2LyJLHUpmk2EBjjl3H7OR4K+EmmWrE44ZS6unsS13/ea6Nc8+sjFOGHhmClqDGezf7h913w/stDxNZXJV7PRkuQEHP/KqJHm68ApXWcW8di+q/C+t9He6JcS4+K/0cPxvTb6lYuY/Y3uGzakkT+DwD0d3T819hrqvSUzj7vt1PmtDb6PUxZtNOvu2fn+i/ONf7K+J9xRyyqQ2vnsGZ6DM/Jcw1IwNcSS47XG/6ei8lzg9R6UCR1n2P0JbTyzEfePDRzEYIv8A3OePBdfw+GIOXmY9RLqkX9bzOEAQBAEAQBAEAQBARcVP8CX/AOt//EryXDPVyfmyMrgI3MzNcvTwwu2nqoMkbDB6iTX2mwzB4EEWsVm1EI7cmmiUm8Pg6vhNTcAHeAR5XsuVHnBbbHue62IscHDYfmpSTi8kYNSWGfKqmbPGWnf6FXr1llEMuEjnWLYeWlzHNu4AgfQq6mzay6yCnHKK1LECCCFvjLHVGFrszHSzFp7J5y/A76K5pTWUQ46MkOFslUSMbzaxG5WU2yqsVkeU8r5ELIKcXGXD6Fzp8A1og7tBZ7QRYX2i437V9Jf+OaoyahTJte9HCp/C05NSlal8v9o+aZvvFEb3723jYWK4uqt9LVCeMZ648jtwhsnKOc4Kk8923xG3gMz9AsPHUuCrJGakp3yPbGwXc4hoHMmy9jFyeEG8LLP0LgmHNp4I4W7GNA6nefE3X0NcFCKijnSlueScpkQgCAIAgCAIAgCAIDBXMvG8cWOHm0ryXDPVyfmhwsSOBIXA4eDdyemuTJ5g8lRZI2uE2seKyajOUa9PjDL9TTghrm8ARyXHeUzW1kslO5s0efQ8itsMWRME065GvgeY3lrtmw/QqqEnXLDL5xU45RH0owjtWa7R32+oWmccesiumzD2s5pidL+ID8w+qvos/pZ7dX/UjVTRBwsf8LZGTi8oytZPFPMfu3+8PdPxBWSSktyILp0ZkcFWem3wmqeWBus6wytc2Hgvvvw9GmzSZ2rcm03hZ/U+O8elbC/pJ4a4y8GTEpv9OxnwSPHgRcfNcj8T17bovzWf7HZ8Ds36f4Gn39MvqV8tI7aPSienU/ZhooWf6uZtnEWiadrQdrzzOwcuq6uj0+315fIy32Z9VHRl0DMEAQBAEAQBAEAQBAEAQH5y0lw59PVSxPFiHkjgWuN2kciCuFdBxm0zdB5WTWqokEBOoCdZnPW+RVc47k0WVy2tMtuDVdu4fD9Fx9RW08nRhJNFkwus7N+funI/qqqbdkvcRur3x95t8ZpNZvaN2jbzC26mrdHeu32Mens2y2sxYRVBw1DtGzmF5prdy2s91Fe17kVbS/Buzd2jR3HbeRUpR2PHbsXU2b44fJQ62n1Hcjs/Rbap7kZ7YbX7iFPCHC2/ceCvjLayprJjilJ7rveHrzCnJLlFZs8HObh0X134VseLIfBnzf4jh6sJ/FHrFH2JHMO9LKP4qS/lfMs/Dj/lSXvI0MbnENaC5xyAAuSeQXx2HJ9D6bg6boT7Pi0tnqxmM2Q8OBf/AOvnwXS02jx60/0Mtt3aJ0sBdEzBAEAQBAEAQBAEAQBAEAQFY030RZXRgghszB3H7iPgdy+Sz30K1e8srntZxLFMMmp5DHMwscOOw8wdhC5E65QeJGtST4IigekmCUC2ZBG9RaJJk1lY/wCJp9D6KudakWwscTeUGNbA7P5j9VzbtHjqjZC5M6Do1iAkZqE3sLjmP2V+jsz/AC5cox6ura964IOKUxglBbsObfqFl1FboszHjsaKJq6GH8zb6rKiE6wycDfkQuhFxuryYnuqsOT4vTAa7PhJsemxU0y6pm6xZiV5dAwmOoh1sxk4bD9DyUoyxzwRayS8DcXOIAOtkC3ab8Oa+t/C/Syx56YX3PnfH05VQSXXJcsP0Aq6l2s+0MeXecLuPRn6kKXj+zVSgq5cZyS8Frnp6nvXJ0bR3ROkoxeNms/fI+xeem5o5BcqrTwr4OnOyUuTeq8gEAQBAEAQBAEAQBAEAQBAEAQEPE8LgqGak0bXt4EbOh2g9FGUIyWJI9Ta4KFi3soiNzTTuZ/JINdvQOFiB1usU9Cn7LLle+5V632cYjHsY2QfyOF/I2WeWjsXBYros1FRoxXM96llH9N/ldUuixcompx8zFTYdM14L45GAZ3c1zQTuGYWfUKUIdVyX0JSmXvB3mNrHNOYz/ZcF2ONu5djouClHayw4/XtkjjDd93HiLZW8yfJbNdfGyuG3v1MmkpcJyz8CdSt7Om/oJ88/qtNa9Hp/kZ5vff8zmf/AI6aqkeyFus91zmQABfiV5oqJWSUUa9RYoQbZMpPZfWu998TB1Lj5ALsx0M3yzmO+JZsM9ltIyxmkklPAWjYfAd7/ctENDBe08lbvl2LVh+j9HAdaKniY61tYNGtbm7aVshFQWI9CmT3PLNmpHgQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAQsYw1lRE6J+xwyO9pGxw6FVX0xtg4SLKrHXJSRy1jzTvdBLkWm193+N6+K1ellCxrufQVWKUU0bOlAeWgG4JA9VijBuaiyyUsRbLTpBIGUzzsyA+i7up6VNL4HI0/W1Gm9mNJ99MeIjH/J3zauh4RX0lP5HviE+I/Mvi7RzQgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIDV4vgFNU5yRjWtYPHdePEbehus9+lqu9tdfMurvnX7LKLieDz4c8Ss/iRX2nYDu1gNnVcDV6CVElNdV5+XxOnTqI3RcH0Z8paavxAjXJbFfM21WeA/EV5p9LdqH148xOyqhdOToeFYdHTxNijFgN+9x3uJ4lfR00xpgoROTZZKyW6RMVpAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAICPX/du6KFnsslDkzM2KSIs9L0BAEAQBAEAQBAEAQBAEAQH/9k=" />
+
+                            <span class="user-info">
+                                <small>Hi,</small>
+                                admin
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="chitietnguoidung?username=admin">
+                                    <i class="ace-icon fa fa-user"></i>
+                                    User
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="dangxuat">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.navbar-container -->
+    </div>
+
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+        </script>
+
+        <!-- Menu left -->
+
+        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+            <script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+            </script>
+
+
+            <ul class="nav nav-list">
+                <li class="active">
+                    <a href="index.html">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> Dashboard </span>
+                    </a>
+                </li>
+
+                <li class="">
+
+                    <a href="@Url.Action("Index", "Drugs")" class="">
+                        <i class="menu-icon fa fa-user"></i>
+                        <span class="menu-text">
+                            Drugs
+                        </span>
+                    </a>
+
+                </li>
+
+                <li class="">
+                    <a href="#!table" class="">
+                        <i class="menu-icon fa fa-home"></i>
+                        <span class="menu-text"> Management Table</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#!typeemployee" class="">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> Employee Type</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#!product" class="">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> Product</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#!employee">
+                        <i class="menu-icon fa fa-list-alt"></i>
+                        <span class="menu-text">Employees</span>
+                    </a>
+                </li>
+
+
+            </ul><!-- /.nav-list -->
+
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+
+
+        <!--Main content-->
+        <div class="main-content">
+            @RenderBody()
+        </div><!-- /.main-content -->
+
+        <div class="footer">
+            <
+            <div class="footer-inner">
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">Trang quản trị</span>
+                        Quản lý phòng khám
+                    </span>
+
+                    &nbsp; &nbsp;
+                    <span class="action-buttons">
+                        <a href="#">
+                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script src="../../assets/js/jquery-2.1.4.min.js"></script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <script src="../../assets/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/js/jquery.dataTables.bootstrap.min.js"></script>
+    <script src="../../assets/js/dataTables.buttons.min.js"></script>
+    <script src="../../assets/js/buttons.flash.min.js"></script>
+    <script src="../../assets/js/buttons.html5.min.js"></script>
+    <script src="../../assets/js/buttons.print.min.js"></script>
+    <script src="../../assets/js/buttons.colVis.min.js"></script>
+    <script src="../../assets/js/dataTables.select.min.js"></script>
+
+    <!-- ace scripts -->
+    <script src="../../assets/js/ace-elements.min.js"></script>
+    <script src="../../assets/js/ace.min.js"></script>
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+			jQuery(function($) {
+				$('#tbl').DataTable({
+					"language":{
+					    "decimal":        "",
+					    "emptyTable":     "Không có dữ liệu",
+					    "info":           "",
+					    "infoEmpty":      "",
+					    "infoFiltered":   "(filtered from _MAX_ total entries)",
+					    "infoPostFix":    "",
+					    "thousands":      ",",
+					    "lengthMenu":     "Hiển thị _MENU_ hàng",
+					    "loadingRecords": "Đang tải...",
+					    "processing":     "Processing...",
+					    "search":         "Tìm kiếm:",
+					    "zeroRecords":    "No matching records found",
+					    "paginate": {
+					        "first":      "Trang đầu",
+					        "last":       "Trang cuối",
+					        "next":       "Sau",
+					        "previous":   "Trước"
+					    },
+					    "aria": {
+					        "sortAscending":  ": activate to sort column ascending",
+					        "sortDescending": ": activate to sort column descending"
+					    }
+					}
+				});
+			});
+    </script>
+
+    <script src="../../js/angular/angular.js"></script>
+    <script src="../../js/angular/ng-file-upload.js"></script>
+    <script src="../../js/angular/ng-file-upload-shim.js"></script>
+    <script src="../../js/angular/angular-route.js"></script>
+    <script src="../../script/app.js"></script>
+    <script src="../../script/controller.js"></script>
+    <script src="../../script/ProductController.js"></script>
+    <script src="../../script/angular-datatables.min.js"></script>
+    <script src="../../script/TableController.js"></script>
+    <script src="../../script/DrugController.js"></script>
+</body>
+</html>
+

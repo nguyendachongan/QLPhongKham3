@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLPhongKhamTModelStoreContainer" CdmEntityContainer="QLPhongKhamTEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClinicalExaminations">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.ClinicalExamination">
+        <MappingFragment StoreEntitySet="ClinicalExamination">
+          <ScalarProperty Name="ClinicalExaminationTypeID" ColumnName="ClinicalExaminationTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClinicalExaminationResults">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.ClinicalExaminationResult">
+        <MappingFragment StoreEntitySet="ClinicalExaminationResult">
+          <ScalarProperty Name="ClinicalExaminationResultID" ColumnName="ClinicalExaminationResultID" />
+          <ScalarProperty Name="ClinicalExaminationID" ColumnName="ClinicalExaminationID" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="ExaminationResultID" ColumnName="ExaminationResultID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drugs">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.Drug">
+        <MappingFragment StoreEntitySet="Drug">
+          <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+          <ScalarProperty Name="IdentifyCard" ColumnName="IdentifyCard" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExaminationResults">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.ExaminationResult">
+        <MappingFragment StoreEntitySet="ExaminationResult">
+          <ScalarProperty Name="ExaminationResultID" ColumnName="ExaminationResultID" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DispenserID" ColumnName="DispenserID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartientOfDays">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.PartientOfDay">
+        <MappingFragment StoreEntitySet="PartientOfDay">
+          <ScalarProperty Name="PartientID" ColumnName="PartientID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="IdentifyCard" ColumnName="IdentifyCard" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrescriptionDetails">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.PrescriptionDetail">
+        <MappingFragment StoreEntitySet="PrescriptionDetail">
+          <ScalarProperty Name="PrescriptionDetailID" ColumnName="PrescriptionDetailID" />
+          <ScalarProperty Name="ExaminationResultID" ColumnName="ExaminationResultID" />
+          <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Dosage" ColumnName="Dosage" />
+          <ScalarProperty Name="Usage" ColumnName="Usage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="Room1" ColumnName="Room" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfDrugs">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.TypeOfDrug">
+        <MappingFragment StoreEntitySet="TypeOfDrug">
+          <ScalarProperty Name="TypeOfDrugID" ColumnName="TypeOfDrugID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkSchedules">
+      <EntityTypeMapping TypeName="QLPhongKhamTModel.WorkSchedule">
+        <MappingFragment StoreEntitySet="WorkSchedule">
+          <ScalarProperty Name="WorkScheduleID" ColumnName="WorkScheduleID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

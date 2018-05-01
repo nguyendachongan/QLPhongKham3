@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLPhongKhamT" Class="DataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ANNDH\MSSQLSERVER_2;Initial Catalog=QLPhongKhamT;Integrated Security=True" SettingsObjectName="Project_DAL.Properties.Settings" SettingsPropertyName="QLPhongKhamTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="UserName" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Account" Member="Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkSchedule" Member="WorkSchedules">
+    <Type Name="WorkSchedule">
+      <Column Name="WorkScheduleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_WorkSchedule" Member="Employee" ThisKey="DoctorID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Room_WorkSchedule" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClinicalExamination" Member="ClinicalExaminations">
+    <Type Name="ClinicalExamination">
+      <Column Name="ClinicalExaminationTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="ClinicalExamination_ClinicalExaminationResult" Member="ClinicalExaminationResults" ThisKey="ClinicalExaminationTypeID" OtherKey="ClinicalExaminationID" Type="ClinicalExaminationResult" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClinicalExaminationResult" Member="ClinicalExaminationResults">
+    <Type Name="ClinicalExaminationResult">
+      <Column Name="ClinicalExaminationResultID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClinicalExaminationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Result" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExaminationResultID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ClinicalExamination_ClinicalExaminationResult" Member="ClinicalExamination" ThisKey="ClinicalExaminationID" OtherKey="ClinicalExaminationTypeID" Type="ClinicalExamination" IsForeignKey="true" />
+      <Association Name="ExaminationResult_ClinicalExaminationResult" Member="ExaminationResult" ThisKey="ExaminationResultID" OtherKey="ExaminationResultID" Type="ExaminationResult" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BirthDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="IdentifyCard" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Account" Member="Accounts" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Account" />
+      <Association Name="Employee_WorkSchedule" Member="WorkSchedules" ThisKey="EmployeeID" OtherKey="DoctorID" Type="WorkSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ExaminationResult" Member="ExaminationResults">
+    <Type Name="ExaminationResult">
+      <Column Name="ExaminationResultID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DispenserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Result" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="ExaminationResult_ClinicalExaminationResult" Member="ClinicalExaminationResults" ThisKey="ExaminationResultID" OtherKey="ExaminationResultID" Type="ClinicalExaminationResult" />
+      <Association Name="ExaminationResult_PrescriptionDetail" Member="PrescriptionDetails" ThisKey="ExaminationResultID" OtherKey="ExaminationResultID" Type="PrescriptionDetail" />
+      <Association Name="Patient_ExaminationResult" Member="Patient" ThisKey="PatientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IdentifyCard" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(11)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Patient_ExaminationResult" Member="ExaminationResults" ThisKey="PatientID" OtherKey="PatientID" Type="ExaminationResult" />
+      <Association Name="Patient_PartientOfDay" Member="PartientOfDays" ThisKey="PatientID" OtherKey="PartientID" Type="PartientOfDay" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PrescriptionDetail" Member="PrescriptionDetails">
+    <Type Name="PrescriptionDetail">
+      <Column Name="PrescriptionDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExaminationResultID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DrugID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Day" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Dosage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Usage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="ExaminationResult_PrescriptionDetail" Member="ExaminationResult" ThisKey="ExaminationResultID" OtherKey="ExaminationResultID" Type="ExaminationResult" IsForeignKey="true" />
+      <Association Name="Drug_PrescriptionDetail" Member="Drug" ThisKey="DrugID" OtherKey="DrugID" Type="Drug" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Room" Member="Room1" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Room_WorkSchedule" Member="WorkSchedules" ThisKey="RoomID" OtherKey="RoomID" Type="WorkSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeOfDrug" Member="TypeOfDrugs">
+    <Type Name="TypeOfDrug">
+      <Column Name="TypeOfDrugID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="TypeOfDrug_Drug" Member="Drugs" ThisKey="TypeOfDrugID" OtherKey="TypeID" Type="Drug" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PartientOfDay" Member="PartientOfDays">
+    <Type Name="PartientOfDay">
+      <Column Name="PartientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Patient_PartientOfDay" Member="Patient" ThisKey="PartientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drug" Member="Drugs">
+    <Type Name="Drug">
+      <Column Name="DrugID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Drug_PrescriptionDetail" Member="PrescriptionDetails" ThisKey="DrugID" OtherKey="DrugID" Type="PrescriptionDetail" />
+      <Association Name="TypeOfDrug_Drug" Member="TypeOfDrug" ThisKey="TypeID" OtherKey="TypeOfDrugID" Type="TypeOfDrug" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

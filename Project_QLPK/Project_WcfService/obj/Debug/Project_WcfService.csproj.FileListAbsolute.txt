@@ -1,0 +1,35 @@
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll.config
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\bin\Project_WcfService.pdb
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\bin\Project_DAL.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\bin\Project_DAL.pdb
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.csprojResolveAssemblyReference.cache
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.dll
+C:\Users\Tri Cho Dien\Desktop\angular-5\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.pdb
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll.config
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_WcfService.pdb
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_DAL.dll
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_DAL.pdb
+D:\QLPhongKham\Project_QLPK\Project_WcfService\bin\Project_DAL.dll.config
+D:\QLPhongKham\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.csprojResolveAssemblyReference.cache
+D:\QLPhongKham\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.dll
+D:\QLPhongKham\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.pdb
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll.config
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.pdb
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.dll
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.pdb
+D:\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.dll.config
+D:\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.csprojResolveAssemblyReference.cache
+D:\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.dll
+D:\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.pdb
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll.config
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.dll
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_WcfService.pdb
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.dll
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.pdb
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\bin\Project_DAL.dll.config
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.csprojResolveAssemblyReference.cache
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.dll
+D:\QLPK\QLPK\Project_QLPK\Project_WcfService\obj\Debug\Project_WcfService.pdb

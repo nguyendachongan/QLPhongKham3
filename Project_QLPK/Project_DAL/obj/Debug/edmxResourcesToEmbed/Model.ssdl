@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPhongKhamTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClinicalExamination">
+    <Key>
+      <PropertyRef Name="ClinicalExaminationTypeID" />
+    </Key>
+    <Property Name="ClinicalExaminationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ClinicalExaminationResult">
+    <Key>
+      <PropertyRef Name="ClinicalExaminationResultID" />
+    </Key>
+    <Property Name="ClinicalExaminationResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClinicalExaminationID" Type="int" Nullable="false" />
+    <Property Name="Result" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="ExaminationResultID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Drug">
+    <Key>
+      <PropertyRef Name="DrugID" />
+    </Key>
+    <Property Name="DrugID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDay" Type="date" Nullable="false" />
+    <Property Name="IdentifyCard" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="RoomID" Type="int" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExaminationResult">
+    <Key>
+      <PropertyRef Name="ExaminationResultID" />
+    </Key>
+    <Property Name="ExaminationResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="DispenserID" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Result" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PartientOfDay">
+    <Key>
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="PartientID" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdentifyCard" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Gender" Type="bit" />
+  </EntityType>
+  <EntityType Name="PrescriptionDetail">
+    <Key>
+      <PropertyRef Name="PrescriptionDetailID" />
+    </Key>
+    <Property Name="PrescriptionDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExaminationResultID" Type="int" Nullable="false" />
+    <Property Name="DrugID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Day" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Dosage" Type="nvarchar" MaxLength="50" />
+    <Property Name="Usage" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Room" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TypeOfDrug">
+    <Key>
+      <PropertyRef Name="TypeOfDrugID" />
+    </Key>
+    <Property Name="TypeOfDrugID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="WorkSchedule">
+    <Key>
+      <PropertyRef Name="WorkScheduleID" />
+    </Key>
+    <Property Name="WorkScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Account_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalExamination_ExaminationResult">
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="1" />
+    <End Role="ClinicalExaminationResult" Type="Self.ClinicalExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Principal>
+      <Dependent Role="ClinicalExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalExaminationResult_ClinicalExamination">
+    <End Role="ClinicalExamination" Type="Self.ClinicalExamination" Multiplicity="1" />
+    <End Role="ClinicalExaminationResult" Type="Self.ClinicalExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicalExamination">
+        <PropertyRef Name="ClinicalExaminationTypeID" />
+      </Principal>
+      <Dependent Role="ClinicalExaminationResult">
+        <PropertyRef Name="ClinicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drug_TypeOfDrug">
+    <End Role="TypeOfDrug" Type="Self.TypeOfDrug" Multiplicity="1" />
+    <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfDrug">
+        <PropertyRef Name="TypeOfDrugID" />
+      </Principal>
+      <Dependent Role="Drug">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExaminationResult_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="ExaminationResult">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartientOfDay_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PartientOfDay" Type="Self.PartientOfDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="PartientOfDay">
+        <PropertyRef Name="PartientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrescriptionDetail_Drug">
+    <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+    <End Role="PrescriptionDetail" Type="Self.PrescriptionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drug">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="PrescriptionDetail">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrescriptionDetail_ExaminationResult">
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="1" />
+    <End Role="PrescriptionDetail" Type="Self.PrescriptionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Principal>
+      <Dependent Role="PrescriptionDetail">
+        <PropertyRef Name="ExaminationResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkSchedule_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="WorkSchedule">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkSchedule_Room1">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="WorkSchedule">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLPhongKhamTModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClinicalExamination" EntityType="Self.ClinicalExamination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClinicalExaminationResult" EntityType="Self.ClinicalExaminationResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drug" EntityType="Self.Drug" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExaminationResult" EntityType="Self.ExaminationResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartientOfDay" EntityType="Self.PartientOfDay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrescriptionDetail" EntityType="Self.PrescriptionDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfDrug" EntityType="Self.TypeOfDrug" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkSchedule" EntityType="Self.WorkSchedule" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalExamination_ExaminationResult" Association="Self.FK_ClinicalExamination_ExaminationResult">
+      <End Role="ExaminationResult" EntitySet="ExaminationResult" />
+      <End Role="ClinicalExaminationResult" EntitySet="ClinicalExaminationResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalExaminationResult_ClinicalExamination" Association="Self.FK_ClinicalExaminationResult_ClinicalExamination">
+      <End Role="ClinicalExamination" EntitySet="ClinicalExamination" />
+      <End Role="ClinicalExaminationResult" EntitySet="ClinicalExaminationResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drug_TypeOfDrug" Association="Self.FK_Drug_TypeOfDrug">
+      <End Role="TypeOfDrug" EntitySet="TypeOfDrug" />
+      <End Role="Drug" EntitySet="Drug" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExaminationResult_Patient" Association="Self.FK_ExaminationResult_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="ExaminationResult" EntitySet="ExaminationResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartientOfDay_Patient" Association="Self.FK_PartientOfDay_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PartientOfDay" EntitySet="PartientOfDay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrescriptionDetail_Drug" Association="Self.FK_PrescriptionDetail_Drug">
+      <End Role="Drug" EntitySet="Drug" />
+      <End Role="PrescriptionDetail" EntitySet="PrescriptionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrescriptionDetail_ExaminationResult" Association="Self.FK_PrescriptionDetail_ExaminationResult">
+      <End Role="ExaminationResult" EntitySet="ExaminationResult" />
+      <End Role="PrescriptionDetail" EntitySet="PrescriptionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkSchedule_Employee1" Association="Self.FK_WorkSchedule_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="WorkSchedule" EntitySet="WorkSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkSchedule_Room1" Association="Self.FK_WorkSchedule_Room1">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="WorkSchedule" EntitySet="WorkSchedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

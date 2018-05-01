@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPhongKhamTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Account_Employee" FromRole="Account" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="ClinicalExamination">
+    <Key>
+      <PropertyRef Name="ClinicalExaminationTypeID" />
+    </Key>
+    <Property Name="ClinicalExaminationTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClinicalExaminationResults" Relationship="Self.FK_ClinicalExaminationResult_ClinicalExamination" FromRole="ClinicalExamination" ToRole="ClinicalExaminationResult" />
+  </EntityType>
+  <EntityType Name="ClinicalExaminationResult">
+    <Key>
+      <PropertyRef Name="ClinicalExaminationResultID" />
+    </Key>
+    <Property Name="ClinicalExaminationResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClinicalExaminationID" Type="Int32" Nullable="false" />
+    <Property Name="Result" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="ExaminationResultID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClinicalExamination" Relationship="Self.FK_ClinicalExaminationResult_ClinicalExamination" FromRole="ClinicalExaminationResult" ToRole="ClinicalExamination" />
+    <NavigationProperty Name="ExaminationResult" Relationship="Self.FK_ClinicalExamination_ExaminationResult" FromRole="ClinicalExaminationResult" ToRole="ExaminationResult" />
+  </EntityType>
+  <EntityType Name="Drug">
+    <Key>
+      <PropertyRef Name="DrugID" />
+    </Key>
+    <Property Name="DrugID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TypeOfDrug" Relationship="Self.FK_Drug_TypeOfDrug" FromRole="Drug" ToRole="TypeOfDrug" />
+    <NavigationProperty Name="PrescriptionDetails" Relationship="Self.FK_PrescriptionDetail_Drug" FromRole="Drug" ToRole="PrescriptionDetail" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IdentifyCard" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Position" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="RoomID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Employee" FromRole="Employee" ToRole="Account" />
+    <NavigationProperty Name="WorkSchedules" Relationship="Self.FK_WorkSchedule_Employee1" FromRole="Employee" ToRole="WorkSchedule" />
+  </EntityType>
+  <EntityType Name="ExaminationResult">
+    <Key>
+      <PropertyRef Name="ExaminationResultID" />
+    </Key>
+    <Property Name="ExaminationResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="DispenserID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClinicalExaminationResults" Relationship="Self.FK_ClinicalExamination_ExaminationResult" FromRole="ExaminationResult" ToRole="ClinicalExaminationResult" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_ExaminationResult_Patient" FromRole="ExaminationResult" ToRole="Patient" />
+    <NavigationProperty Name="PrescriptionDetails" Relationship="Self.FK_PrescriptionDetail_ExaminationResult" FromRole="ExaminationResult" ToRole="PrescriptionDetail" />
+  </EntityType>
+  <EntityType Name="PartientOfDay">
+    <Key>
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="PartientID" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_PartientOfDay_Patient" FromRole="PartientOfDay" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdentifyCard" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <NavigationProperty Name="ExaminationResults" Relationship="Self.FK_ExaminationResult_Patient" FromRole="Patient" ToRole="ExaminationResult" />
+    <NavigationProperty Name="PartientOfDays" Relationship="Self.FK_PartientOfDay_Patient" FromRole="Patient" ToRole="PartientOfDay" />
+  </EntityType>
+  <EntityType Name="PrescriptionDetail">
+    <Key>
+      <PropertyRef Name="PrescriptionDetailID" />
+    </Key>
+    <Property Name="PrescriptionDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExaminationResultID" Type="Int32" Nullable="false" />
+    <Property Name="DrugID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Day" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Dosage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Drug" Relationship="Self.FK_PrescriptionDetail_Drug" FromRole="PrescriptionDetail" ToRole="Drug" />
+    <NavigationProperty Name="ExaminationResult" Relationship="Self.FK_PrescriptionDetail_ExaminationResult" FromRole="PrescriptionDetail" ToRole="ExaminationResult" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Room1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="WorkSchedules" Relationship="Self.FK_WorkSchedule_Room1" FromRole="Room" ToRole="WorkSchedule" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeOfDrug">
+    <Key>
+      <PropertyRef Name="TypeOfDrugID" />
+    </Key>
+    <Property Name="TypeOfDrugID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Drugs" Relationship="Self.FK_Drug_TypeOfDrug" FromRole="TypeOfDrug" ToRole="Drug" />
+  </EntityType>
+  <EntityType Name="WorkSchedule">
+    <Key>
+      <PropertyRef Name="WorkScheduleID" />
+    </Key>
+    <Property Name="WorkScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="RoomID" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_WorkSchedule_Employee1" FromRole="WorkSchedule" ToRole="Employee" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_WorkSchedule_Room1" FromRole="WorkSchedule" ToRole="Room" />
+  </EntityType>
+  <Association Name="FK_Account_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalExaminationResult_ClinicalExamination">
+    <End Role="ClinicalExamination" Type="Self.ClinicalExamination" Multiplicity="1" />
+    <End Role="ClinicalExaminationResult" Type="Self.ClinicalExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicalExamination">
+        <PropertyRef Name="ClinicalExaminationTypeID" />
+      </Principal>
+      <Dependent Role="ClinicalExaminationResult">
+        <PropertyRef Name="ClinicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalExamination_ExaminationResult">
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="1" />
+    <End Role="ClinicalExaminationResult" Type="Self.ClinicalExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Principal>
+      <Dependent Role="ClinicalExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drug_TypeOfDrug">
+    <End Role="TypeOfDrug" Type="Self.TypeOfDrug" Multiplicity="1" />
+    <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfDrug">
+        <PropertyRef Name="TypeOfDrugID" />
+      </Principal>
+      <Dependent Role="Drug">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrescriptionDetail_Drug">
+    <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+    <End Role="PrescriptionDetail" Type="Self.PrescriptionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drug">
+        <PropertyRef Name="DrugID" />
+      </Principal>
+      <Dependent Role="PrescriptionDetail">
+        <PropertyRef Name="DrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkSchedule_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="WorkSchedule">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExaminationResult_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="ExaminationResult">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrescriptionDetail_ExaminationResult">
+    <End Role="ExaminationResult" Type="Self.ExaminationResult" Multiplicity="1" />
+    <End Role="PrescriptionDetail" Type="Self.PrescriptionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExaminationResult">
+        <PropertyRef Name="ExaminationResultID" />
+      </Principal>
+      <Dependent Role="PrescriptionDetail">
+        <PropertyRef Name="ExaminationResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartientOfDay_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PartientOfDay" Type="Self.PartientOfDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="PartientOfDay">
+        <PropertyRef Name="PartientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkSchedule_Room1">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="WorkSchedule">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLPhongKhamTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="ClinicalExaminations" EntityType="Self.ClinicalExamination" />
+    <EntitySet Name="ClinicalExaminationResults" EntityType="Self.ClinicalExaminationResult" />
+    <EntitySet Name="Drugs" EntityType="Self.Drug" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="ExaminationResults" EntityType="Self.ExaminationResult" />
+    <EntitySet Name="PartientOfDays" EntityType="Self.PartientOfDay" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="PrescriptionDetails" EntityType="Self.PrescriptionDetail" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TypeOfDrugs" EntityType="Self.TypeOfDrug" />
+    <EntitySet Name="WorkSchedules" EntityType="Self.WorkSchedule" />
+    <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalExaminationResult_ClinicalExamination" Association="Self.FK_ClinicalExaminationResult_ClinicalExamination">
+      <End Role="ClinicalExamination" EntitySet="ClinicalExaminations" />
+      <End Role="ClinicalExaminationResult" EntitySet="ClinicalExaminationResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalExamination_ExaminationResult" Association="Self.FK_ClinicalExamination_ExaminationResult">
+      <End Role="ExaminationResult" EntitySet="ExaminationResults" />
+      <End Role="ClinicalExaminationResult" EntitySet="ClinicalExaminationResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drug_TypeOfDrug" Association="Self.FK_Drug_TypeOfDrug">
+      <End Role="TypeOfDrug" EntitySet="TypeOfDrugs" />
+      <End Role="Drug" EntitySet="Drugs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrescriptionDetail_Drug" Association="Self.FK_PrescriptionDetail_Drug">
+      <End Role="Drug" EntitySet="Drugs" />
+      <End Role="PrescriptionDetail" EntitySet="PrescriptionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkSchedule_Employee1" Association="Self.FK_WorkSchedule_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="WorkSchedule" EntitySet="WorkSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExaminationResult_Patient" Association="Self.FK_ExaminationResult_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="ExaminationResult" EntitySet="ExaminationResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrescriptionDetail_ExaminationResult" Association="Self.FK_PrescriptionDetail_ExaminationResult">
+      <End Role="ExaminationResult" EntitySet="ExaminationResults" />
+      <End Role="PrescriptionDetail" EntitySet="PrescriptionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartientOfDay_Patient" Association="Self.FK_PartientOfDay_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PartientOfDay" EntitySet="PartientOfDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkSchedule_Room1" Association="Self.FK_WorkSchedule_Room1">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="WorkSchedule" EntitySet="WorkSchedules" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
