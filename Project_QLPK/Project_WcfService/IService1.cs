@@ -179,9 +179,16 @@ namespace Project_WcfService
         ePatientOfDay insertPatient(ePatient e);
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "getPatient?id={id}")]
         ePatient getOnePatient(int id);
 
         [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json,
+          RequestFormat = WebMessageFormat.Json, UriTemplate = "Patients/edit")]
         bool updatePatient(ePatient e);
 
         // PatientOfDay

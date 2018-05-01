@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1275,6 +1276,7 @@
     <Content Include="script\controller.js" />
     <Content Include="script\DrugController.js" />
     <Content Include="script\OrderController.js" />
+    <Content Include="script\PatientController.js" />
     <Content Include="script\ProductController.js" />
     <Content Include="script\TableController.js" />
     <Content Include="Web.config" />
@@ -1292,6 +1294,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Drugs\Index.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

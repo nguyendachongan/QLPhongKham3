@@ -29,8 +29,16 @@ namespace Project_DAL
         }
         public void updatePatient(Patient Patient)
         {
-            //db.Patients.     
-            //db.SubmitChanges();
+             var record = db.Patients.Where(x => x.PatientID == Patient.PatientID).FirstOrDefault();
+            record.FirstName = Patient.FirstName;
+            record.MiddleName = Patient.MiddleName;
+            record.LastName = Patient.LastName;
+            record.IdentifyCard = Patient.IdentifyCard;
+            record.Gender = Patient.Gender;
+            record.Phone = Patient.Phone;
+            record.Address = Patient.Address;
+
+            db.SubmitChanges();
         } 
 
     }

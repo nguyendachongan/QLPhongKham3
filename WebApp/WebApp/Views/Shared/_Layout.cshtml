@@ -133,7 +133,7 @@
 
         <!-- Menu left -->
 
-        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <div id="sidebar" class="sidebar responsive ace-save-state">
             <script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
             </script>
@@ -159,9 +159,9 @@
                 </li>
 
                 <li class="">
-                    <a href="#!table" class="">
+                    <a href="@Url.Action("Index", "Patients")" class="">
                         <i class="menu-icon fa fa-home"></i>
-                        <span class="menu-text"> Management Table</span>
+                        <span class="menu-text"> Patients</span>
                     </a>
                 </li>
 
@@ -298,7 +298,7 @@
     <script src="../../script/controller.js"></script>
     <script src="../../script/ProductController.js"></script>
     <script src="../../script/angular-datatables.min.js"></script>
-    <script src="../../script/TableController.js"></script>
+    <script src="../../script/PatientController.js"></script>
     <script src="../../script/DrugController.js"></script>
 </body>
 </html>
