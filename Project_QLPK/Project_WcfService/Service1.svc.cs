@@ -312,13 +312,10 @@ namespace Project_WcfService
                 temp.IdentifyCard = record.IdentifyCard;
                 temp.LastName = record.LastName;
                 temp.MiddleName = record.MiddleName;
-                if(accdal.getOneAccountByEmployeeID(record.EmployeeID)!=null)
-                    temp.UserName = accdal.getOneAccountByEmployeeID(record.EmployeeID).UserName;
                 temp.Phone = record.Phone;
-                temp.Position = record.Position;
-                temp.IdentifyCard = record.IdentifyCard;               
+                temp.Position = record.Position;             
                 temp.EmployeeID = record.EmployeeID;
-                if(temp.UserName != null) ls.Add(temp);
+                ls.Add(temp);
             }
             return ls;
         }
@@ -384,10 +381,8 @@ namespace Project_WcfService
             e.IdentifyCard = result.IdentifyCard;
             e.LastName = result.LastName;
             e.MiddleName = result.MiddleName;
-            e.UserName = accdal.getOneAccountByEmployeeID(id).UserName;
             e.Phone = result.Phone;
             e.Position = result.Position;
-            e.IdentifyCard = result.IdentifyCard;
             e.EmployeeID = result.EmployeeID;
             return e;
         }

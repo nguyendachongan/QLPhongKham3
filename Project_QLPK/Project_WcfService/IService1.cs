@@ -131,7 +131,10 @@ namespace Project_WcfService
           BodyStyle = WebMessageBodyStyle.Bare,
           UriTemplate = "getAllNewEmployees/")]
         List<eEmployee> getAllNewEmployee();
+
         [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json, UriTemplate = "Employees/new")]
         bool insertEmployee(eEmployee e);
 
         [OperationContract]
@@ -143,6 +146,8 @@ namespace Project_WcfService
         eEmployee getOneEmployee(int id);
 
         [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json, UriTemplate = "Employees/edit")]
         bool updateEmployee(eEmployee e);
 
         // ExaminationResult
@@ -323,6 +328,16 @@ namespace Project_WcfService
         public string UserName { get; set; }
         [DataMember]
         public string Password { get; set; }
+        [DataMember]
+        public string FirstName { get; set; }
+        [DataMember]
+        public string LastName { get; set; }
+        [DataMember]
+        public string MiddleName { get; set; }
+        [DataMember]
+        public int Position { get; set; }
+        [DataMember]
+        public bool Active { get; set; }
     }
     public class eClinicalExamination
     {
@@ -357,8 +372,6 @@ namespace Project_WcfService
         [DataMember]
         public string MiddleName { get; set; }
         [DataMember]
-        public string UserName { get; set; }
-        [DataMember]
         public DateTime BirthDay { get; set; }
         [DataMember]
         public string IdentifyCard { get; set; }
@@ -370,8 +383,6 @@ namespace Project_WcfService
         public string Address { get; set; }
         [DataMember]
         public bool Gender { get; set; }
-        [DataMember]
-        public int RoomID { get; set; }
         [DataMember]
         public bool Active { get; set; }
 

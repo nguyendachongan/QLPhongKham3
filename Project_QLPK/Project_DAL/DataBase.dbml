@@ -15,8 +15,8 @@
       <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Employee_WorkSchedule" Member="Employee" ThisKey="DoctorID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
       <Association Name="Room_WorkSchedule" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+      <Association Name="Employee_WorkSchedule" Member="Employee" ThisKey="DoctorID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ClinicalExamination" Member="ClinicalExaminations">
@@ -36,24 +36,6 @@
       <Column Name="ExaminationResultID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="ClinicalExamination_ClinicalExaminationResult" Member="ClinicalExamination" ThisKey="ClinicalExaminationID" OtherKey="ClinicalExaminationTypeID" Type="ClinicalExamination" IsForeignKey="true" />
       <Association Name="ExaminationResult_ClinicalExaminationResult" Member="ExaminationResult" ThisKey="ExaminationResultID" OtherKey="ExaminationResultID" Type="ExaminationResult" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Employee" Member="Employees">
-    <Type Name="Employee">
-      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="BirthDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="IdentifyCard" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
-      <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Employee_Account" Member="Accounts" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Account" />
-      <Association Name="Employee_WorkSchedule" Member="WorkSchedules" ThisKey="EmployeeID" OtherKey="DoctorID" Type="WorkSchedule" />
     </Type>
   </Table>
   <Table Name="dbo.ExaminationResult" Member="ExaminationResults">
@@ -131,6 +113,24 @@
       <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Drug_PrescriptionDetail" Member="PrescriptionDetails" ThisKey="DrugID" OtherKey="DrugID" Type="PrescriptionDetail" />
       <Association Name="TypeOfDrug_Drug" Member="TypeOfDrug" ThisKey="TypeID" OtherKey="TypeOfDrugID" Type="TypeOfDrug" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BirthDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="IdentifyCard" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_Account" Member="Accounts" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Account" />
+      <Association Name="Employee_WorkSchedule" Member="WorkSchedules" ThisKey="EmployeeID" OtherKey="DoctorID" Type="WorkSchedule" />
     </Type>
   </Table>
 </Database>
