@@ -15,7 +15,7 @@
     $scope.showModal = function (id) {
         $scope.id = id;
         if (id == 0) {
-            $("#modalTitle").text("New Drug");
+            $("#modalTitle").text("New Patient");
             $("#btnAddAction").text("Add");
 
             $scope.IdentifyCard = "";
@@ -27,7 +27,7 @@
             $scope.Address = "";
 
         } else {
-            $("#modalTitle").text("Edit Type");
+            $("#modalTitle").text("Edit Patient");
             $("#btnAddAction").text("Update");
 
             //find selected item

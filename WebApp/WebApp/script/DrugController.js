@@ -27,7 +27,7 @@
             $scope.Price = 0;
             $scope.Type = $scope.types[0];
         } else {
-            $("#modalTitle").text("Edit Type");
+            $("#modalTitle").text("Edit Drug");
             $("#btnAddAction").text("Update");
 
             //find selected item
