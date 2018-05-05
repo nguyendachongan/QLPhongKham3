@@ -142,11 +142,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DrugsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PatientOfDaysController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1273,12 +1277,8 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="script\angular-datatables.min.js" />
     <Content Include="script\app.js" />
-    <Content Include="script\controller.js" />
     <Content Include="script\DrugController.js" />
-    <Content Include="script\OrderController.js" />
     <Content Include="script\PatientController.js" />
-    <Content Include="script\ProductController.js" />
-    <Content Include="script\TableController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1295,10 +1295,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Drugs\Index.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\PatientOfDays\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

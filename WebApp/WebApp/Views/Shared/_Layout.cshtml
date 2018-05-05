@@ -7,6 +7,7 @@
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>@ViewBag.Title</title>
 
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -97,7 +98,7 @@
 
                             <span class="user-info">
                                 <small>Hi,</small>
-                                admin
+                                @User.Identity.Name
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -114,7 +115,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="dangxuat">
+                                <a href="/Login/Logout">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Log Out
                                 </a>
@@ -140,15 +141,7 @@
 
 
             <ul class="nav nav-list">
-                <li class="active">
-                    <a href="index.html">
-                        <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text"> Dashboard </span>
-                    </a>
-                </li>
-
-                <li class="">
-
+                <li class="@(ViewBag.Drugs==true? "active": "")">
                     <a href="@Url.Action("Index", "Drugs")" class="">
                         <i class="menu-icon fa fa-user"></i>
                         <span class="menu-text">
@@ -158,14 +151,14 @@
 
                 </li>
 
-                <li class="">
+                <li class="@(ViewBag.Patients==true? "active": "")">
                     <a href="@Url.Action("Index", "Patients")" class="">
                         <i class="menu-icon fa fa-home"></i>
                         <span class="menu-text"> Patients</span>
                     </a>
                 </li>
 
-                <li class="">
+              <!--  <li class="">
                     <a href="#!typeemployee" class="">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
                         <span class="menu-text"> Employee Type</span>
@@ -173,7 +166,7 @@
                 </li>
                 <li class="">
                     <a href="#!product" class="">
-                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> Product</span>
                     </a>
                 </li>
@@ -183,7 +176,7 @@
                         <i class="menu-icon fa fa-list-alt"></i>
                         <span class="menu-text">Employees</span>
                     </a>
-                </li>
+                </li>-->
 
 
             </ul><!-- /.nav-list -->

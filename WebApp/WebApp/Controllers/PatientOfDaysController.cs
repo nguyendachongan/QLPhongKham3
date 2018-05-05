@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
-    public class DrugsController : Controller
+    public class PatientOfDaysController : Controller
     {
-        // GET: Drugs
+        // GET: PatientOfDay
         public ActionResult Index()
         {
-            ViewBag.Drugs = true;
+            ViewBag.PatientOfDays = true;
             return View();
         }
     }

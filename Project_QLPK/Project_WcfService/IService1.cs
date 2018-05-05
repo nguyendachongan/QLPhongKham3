@@ -34,7 +34,7 @@ namespace Project_WcfService
         bool insertAccount(eAccount e);
 
         [OperationContract]
-        [WebInvoke(Method = "POST",
+        [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
@@ -428,6 +428,10 @@ namespace Project_WcfService
         public string Address { get; set; }
         [DataMember]
         public bool Gender { get; set; }
+        [DataMember]
+        public int Number { get; set; }
+        [DataMember]
+        public string Room { get; set; }
     }
     public class ePatientOfDay
     {

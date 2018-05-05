@@ -537,7 +537,10 @@ namespace Project_WcfService
                 temp.LastName = record.LastName;
                 temp.MiddleName = record.MiddleName;
                 temp.PatientID = record.PatientID;
-                temp.Phone = record.Phone;             
+                temp.Phone = record.Phone;
+                PartientOfDay pod = potdal.getOnePartientOfDay(temp.PatientID);
+                temp.Number = pod == null ? 0 : pod.Number;
+                temp.Room = pod == null ? "" : roomdal.getOneRoom(pod.RoomID).Room1;
                 ls.Add(temp);
             }
             return ls;

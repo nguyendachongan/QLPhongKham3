@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Drugs";
+    ViewBag.Title = "Index";
 }
 
 <div class="main-content-inner" ng-controller="DrugController">
@@ -56,7 +56,7 @@
                                     <th>Description</th>
                                     <th>Price</th>
                                     <th>Type</th>
-                                    <th class="center">Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -70,9 +70,9 @@
                                     <td ng-bind="x.Type.Type"></td>
 
                                     <td class="text-center">
-                                        <button class="btn btn-danger btn-sm"  ng-click="showModal(x.DrugID)"><i class=" fa fa-pencil-square-o"></i></button>
+                                        <button ng-click="showModal(x.DrugID)"><i class="glyphicon glyphicon-edit text-primary"></i></button>
                                     </td>
-                                    
+
                                 </tr>
 
                             </tbody>
@@ -126,11 +126,11 @@
                                     <select ng-model="Type" ng-options="y.Type for (x,y) in types" class="form-control"></select>
                                 </div>
                             </div>
-                          
+
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" ng-disabled="Name == '' || Price <= 0" ng-class="{disable:(Name == '' || Price <= 0)}" ng-click="saveData()" id="btnAddAction">Add</button>
+                        <button type="button" class="btn btn-success" ng-click="saveData()" id="btnAddAction">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>

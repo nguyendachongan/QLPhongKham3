@@ -11,6 +11,7 @@ namespace WebApp.Controllers
         // GET: Patient
         public ActionResult Index()
         {
+            ViewBag.Patients= true;
             return View();
         }
     }

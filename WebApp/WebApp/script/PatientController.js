@@ -80,5 +80,19 @@
         }
         
     }
+
+    //Get number
+    $scope.getNumber = function (id) {
+        $http.post("http://localhost:6500/Service1.svc/PatientOfDays/new", id).then(function (res) {
+            $scope.Number = res.data.Number;
+            $scope.Room = res.data.Room;
+            $("#MessageBox").modal('show');
+        });
+    };
+
+    //OK
+    $scope.OK = function () {
+        window.location.reload();
+    };
 });
 

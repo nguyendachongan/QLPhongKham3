@@ -1,16 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "Patients";
+    ViewBag.Title = "Index";
 }
 
-<div class="main-content-inner" ng-controller="PatientController">
+<div class="main-content-inner" ng-controller="EmployeeController">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="#">Home</a>
             </li>
-            <li class="active">Management of Patients</li>
+            <li class="active">Management of Employees</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -19,14 +19,14 @@
             <div class="col-md-9" style="margin-top: 10px;">
                 <button type="button" class="btn btn-info" ng-click="showModal(0)">
                     <i class="ace-icon fa fa-check bigger-110"></i>
-                    Add Patient
+                    Add Employee
                 </button>
             </div>
         </div><!-- /.nav-search -->
         <h1>
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Management of Patients
+                Management of Employees
             </small>
         </h1>
 
@@ -42,7 +42,7 @@
                             <div class="pull-right tableTools-container"></div>
                         </div>
                         <div class="table-header">
-                            Drugs List
+                            Employees List
                         </div>
                         <table datatable="ng" dt-options="dtOptions" id="tbl" class="table  table-bordered table-hover">
                             <thead>
@@ -54,30 +54,32 @@
                                     </th>
                                     <th>Identify Card</th>
                                     <th>Name</th>
+                                    <th>Birthday</th>
                                     <th>Gender</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th class="center" style="width:200px">Actions</th>
+                                    <th>Position</th>
+                                    <th>Active</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
                             <tbody>
 
-                                <tr ng-repeat="x in patients" id="{{x.PatientID}}">
+                                <tr ng-repeat="x in employees" id="{{x.EmployeeID}}">
                                     <td ng-bind="$index + 1"></td>
                                     <td ng-bind="x.IdentifyCard"></td>
                                     <td>{{x.LastName}} {{x.MiddleName}} {{x.FirstName}}</td>
+                                    <td>{{convertDate("\/Date(727981200000+0700)\/")}}</td>
                                     <td>{{x.Gender?'Male':'Female'}}</td>
                                     <td ng-bind="x.Phone"></td>
                                     <td ng-bind="x.Address"></td>
+                                    <td>{{x.Position == 1 ? 'Admin' : (x.Position == 2 ? 'Doctor' : (x.Postion == 3 ? 'Dispenser' : 'Receptionist'))}}</td>
+                                    <td><i class="{{x.Active ? 'fa fa-check-square-o' : 'fa fa-square-o'}}" aria-hidden="true"></i></td>
                                     <td class="text-center">
-                                        <button class="btn btn-danger btn-sm" ng-click="showModal(x.PatientID)"><i class= " fa fa-pencil-square-o"></i></button>
-                                        <button  class="btn btn-success btn-sm" data-toggle="tooltip" 
-                                        title="{{x.Number == 0 ? '' : 'Number: '+x.Number + '\nRoom: ' + x.Room}}" 
-                                        ng-class="{disabled:x.Number != 0}" ng-click="getNumber(x.PatientID)" 
-                                        ng-disabled="x.Number != 0">Get Number</button>
+                                        <button ng-click="showModal(x.EmployeeID)"><i class="glyphicon glyphicon-edit text-primary"></i></button>
                                     </td>
-                                    
+
                                 </tr>
 
                             </tbody>
@@ -154,30 +156,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" ng-disabled="FirstName == '' || LastName == '' || IdentifyCard == ''" 
-                                ng-class="{disable:(FirstName == '' || LastName == '' || IdentifyCard == '') }"
-                                ng-click="saveData()" id="btnAddAction">Add</button>
+                        <button type="button" class="btn btn-success" ng-click="saveData()" id="btnAddAction">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div id="MessageBox" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                   
-                    <div class="modal-body">
-                        <div class="row">
-                            <label class="col-sm-6 control-label">Number:</label>
-                            <label class="col-sm-6 control-label">{{Number}}</label>
-                            <label class="col-sm-6 control-label">Room:</label>
-                            <label class="col-sm-6 control-label">{{Room}}</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success btn-xs" ng-click="OK()">OK</button>
                     </div>
                 </div>
 
