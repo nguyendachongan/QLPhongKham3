@@ -38,3 +38,13 @@ D:\QLPK\QLPK\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
 D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
 D:\QLPK\QLPK\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll.config
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.dll
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\Project_DAL.pdb
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.dll
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.xml
+D:\QLPK3\Project_QLPK\Project_DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\QLPK3\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.csprojResolveAssemblyReference.cache
+D:\QLPK3\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.dll
+D:\QLPK3\Project_QLPK\Project_DAL\obj\Debug\Project_DAL.pdb
