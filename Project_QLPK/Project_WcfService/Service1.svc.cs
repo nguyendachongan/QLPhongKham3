@@ -307,6 +307,7 @@ namespace Project_WcfService
                 temp.Active = record.Active;
                 temp.Address = record.Address;
                 temp.BirthDay = record.BirthDay;
+                temp.BirthDayString = temp.BirthDay.ToString("yyyy-MM-dd");
                 temp.FirstName = record.FirstName;
                 temp.Gender = record.Gender;
                 temp.IdentifyCard = record.IdentifyCard;
@@ -329,6 +330,7 @@ namespace Project_WcfService
                 temp.Active = record.Active;
                 temp.Address = record.Address;
                 temp.BirthDay = record.BirthDay;
+                temp.BirthDayString = record.BirthDay.ToString("yyyy-MM-dd");
                 temp.FirstName = record.FirstName;
                 temp.Gender = record.Gender;
                 temp.IdentifyCard = record.IdentifyCard;
@@ -375,8 +377,9 @@ namespace Project_WcfService
             eEmployee e = new eEmployee();
             e.Active = result.Active;
             e.Address = result.Address;
-            e.BirthDay = result.BirthDay;
+            e.BirthDay =  result.BirthDay;
             e.FirstName = result.FirstName;
+            e.BirthDayString = result.BirthDay.ToString("yyyy-MM-dd");
             e.Gender = result.Gender;
             e.IdentifyCard = result.IdentifyCard;
             e.LastName = result.LastName;

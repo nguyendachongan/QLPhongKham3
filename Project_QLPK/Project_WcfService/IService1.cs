@@ -374,6 +374,8 @@ namespace Project_WcfService
         [DataMember]
         public DateTime BirthDay { get; set; }
         [DataMember]
+        public string BirthDayString { get; set; }
+        [DataMember]
         public string IdentifyCard { get; set; }
         [DataMember]
         public string Phone { get; set; }
