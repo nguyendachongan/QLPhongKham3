@@ -160,12 +160,22 @@ namespace Project_WcfService
         List<eExaminationResult> getAllExaminationResult();
 
         [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ExaminationResults/new")]
         bool insertExaminationResult(eExaminationResult e);
 
         [OperationContract]
         eExaminationResult getOneExaminationResult(int id);
 
         [OperationContract]
+        [WebInvoke(Method = "PUT",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ExaminationResults/edit")]
         bool updateExaminationResult(eExaminationResult e);
 
         // Patient
@@ -203,8 +213,8 @@ namespace Project_WcfService
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "getAllPatientOfDays/")]
-        List<ePatientOfDay> getAllPatientOfDay();
+        UriTemplate = "getPatientOfDaysByDoctorID?id={id}")]
+        List<ePatient> getPatientOfDaysByDoctorID(int id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
@@ -228,12 +238,23 @@ namespace Project_WcfService
         List<ePrescriptionDetail> getAllPrescriptionDetail();
 
         [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "PrescriptionDetails/new")]
         bool insertPrescriptionDetail(ePrescriptionDetail e);
 
         [OperationContract]
         ePrescriptionDetail getOnePrescriptionDetail(int id);
 
         [OperationContract]
+
+        [WebInvoke(Method = "PUT",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "PrescriptionDetails/edit")]
         bool updatePrescriptionDetail(ePrescriptionDetail e);
 
 
@@ -434,6 +455,8 @@ namespace Project_WcfService
         public int Number { get; set; }
         [DataMember]
         public string Room { get; set; }
+        [DataMember]
+        public bool Status { get; set; }
     }
     public class ePatientOfDay
     {
@@ -443,6 +466,8 @@ namespace Project_WcfService
         public int Number { get; set; }
         [DataMember]
         public int RoomID { get; set; }
+        [DataMember]
+        public bool Status { get; set; }
         [DataMember]
         public string Room { get; set; }
 

@@ -13,6 +13,9 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             ViewBag.Drugs = true;
+            var cookie = Request.Cookies["userRole"];
+            ViewBag.userRole = int.Parse(cookie.Value);
+            if (ViewBag.userRole == 2) return Redirect("/PatientOfDays/Index");
             return View();
         }
     }

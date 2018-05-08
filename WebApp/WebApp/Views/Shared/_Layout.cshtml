@@ -134,9 +134,11 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
             </script>
 
-
+            
             <ul class="nav nav-list">
-                <li class="@(ViewBag.Drugs==true? "active": "")">
+            @if (ViewBag.userRole == 1)
+            { 
+                <li class="@(ViewBag.Drugs == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Drugs")" class="">
                         <i class="menu-icon fa fa-user"></i>
                         <span class="menu-text">
@@ -146,33 +148,39 @@
 
                 </li>
 
-                <li class="@(ViewBag.Patients==true? "active": "")">
+                <li class="@(ViewBag.Patients == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Patients")" class="">
                         <i class="menu-icon fa fa-home"></i>
                         <span class="menu-text"> Patients</span>
                     </a>
                 </li>
-
-                <li class="@(ViewBag.Employees==true? "active": "")">
+            }
+            @if (ViewBag.userRole == 1 || ViewBag.userRole == 3)
+            {    <li class="@(ViewBag.Employees == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Employees")" class="">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
                         <span class="menu-text"> Employees</span>
                     </a>
                 </li>
-                <li class="@(ViewBag.Prescriptions==true? "active": "")">
+            }
+            @if (ViewBag.userRole == 1 || ViewBag.userRole == 4)
+            {
+                <li class="@(ViewBag.Prescriptions == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Prescription")" class="">
                         <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> Prescriptions</span>
                     </a>
                 </li>
+            }
 
-                <li class="@(ViewBag.PatientOfDays==true? "active": "")">
+              @if (ViewBag.userRole == 2)
+              {  <li class="@(ViewBag.PatientOfDays == true ? "active" : "")">
                     <a href="@Url.Action("Index", "PatientOfDays")">
                         <i class="menu-icon fa fa-list-alt"></i>
                         <span class="menu-text">My Patients</span>
                     </a>
                 </li>
-
+              }
 
             </ul><!-- /.nav-list -->
 
@@ -288,7 +296,7 @@
     <script src="../../script/DrugController.js"></script>
     <script src="../../script/EmployeeController.js"></script>
     <script src="../../script/PrescriptionController.js"></script>
-    <script src="../../script/PatientOfDayController.js"></script>
+    <script src="../../script/MyPatientController.js"></script>
 </body>
 </html>
 

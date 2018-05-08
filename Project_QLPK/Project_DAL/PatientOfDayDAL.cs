@@ -13,10 +13,15 @@ namespace Project_DAL
         {
             db = new DataBaseDataContext();
         }
-        public List<PartientOfDay> getAllPartientOfDay()
+        public List<Patient> getPatientOfDaysByDoctorID(int DoctorID)
         {
-            return db.PartientOfDays.ToList();
+            return (from p in db.Patients
+                    join pod in db.PartientOfDays on p.PatientID equals pod.PartientID
+                    join ws in db.WorkSchedules on pod.RoomID equals ws.RoomID
+                    where ws.DoctorID == DoctorID && ws.StartTime <= DateTime.Now && ws.EndTime >= DateTime.Now
+                    select p).ToList(); 
         }
+
         public PartientOfDay getOnePartientOfDay(int Id)
         {
             return db.PartientOfDays.Where(x => x.PartientID == Id).FirstOrDefault();
@@ -35,6 +40,7 @@ namespace Project_DAL
             pod.PartientID = PID;
             pod.RoomID = min.Key;
             pod.Number = min.Count + 1;
+            pod.Status = false;
             db.PartientOfDays.InsertOnSubmit(pod);
             db.SubmitChanges();
             return pod;
@@ -44,6 +50,7 @@ namespace Project_DAL
             var record = db.PartientOfDays.Where(x => x.PartientID == PartientOfDay.PartientID).FirstOrDefault();
             record.Number = PartientOfDay.Number;
             record.RoomID=PartientOfDay.RoomID;
+            record.Status = PartientOfDay.Status;
             db.SubmitChanges();
         }
     }

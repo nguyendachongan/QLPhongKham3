@@ -477,9 +477,8 @@ namespace Project_WcfService
                 temp.Description = e.Description;
                 temp.DispenserID = Convert.ToInt32(e.DispenserID);
                 temp.DoctorID = e.DoctorID;
-                temp.ExaminationResultID = e.ExaminationResultID;
                 temp.PatientID = e.PatientID;
-                temp.Time = e.Time;
+                temp.Time = DateTime.Now;
                 temp.Result = e.Result;
                 erdal.insertExaminationResult(temp);
                 return true;
@@ -612,16 +611,22 @@ namespace Project_WcfService
         #endregion
 
         #region PatientOfDay
-        public List<ePatientOfDay> getAllPatientOfDay()
+        public List<ePatient> getPatientOfDaysByDoctorID(int DoctorID)
         {
-            List<ePatientOfDay> ls = new List<ePatientOfDay>();
-            foreach (PartientOfDay record in potdal.getAllPartientOfDay())
+            List<ePatient> ls = new List<ePatient>();
+            foreach (Patient record in potdal.getPatientOfDaysByDoctorID(DoctorID))
             {
-                ePatientOfDay temp = new ePatientOfDay();
-                temp.Number = record.Number;
-                temp.PatientID = record.PartientID;
-                temp.RoomID = record.RoomID;
-                
+                ePatient temp = new ePatient();
+                temp.Address = record.Address;
+                temp.FirstName = record.FirstName;
+                temp.Gender = Convert.ToBoolean(record.Gender);
+                temp.IdentifyCard = record.IdentifyCard;
+                temp.LastName = record.LastName;
+                temp.MiddleName = record.MiddleName;
+                temp.PatientID = record.PatientID;
+                temp.Phone = record.Phone;
+                PartientOfDay pod = potdal.getOnePartientOfDay(record.PatientID);
+                temp.Status = pod.Status.Value;
                 ls.Add(temp);
             }
             return ls;
@@ -635,7 +640,7 @@ namespace Project_WcfService
                 PartientOfDay e = potdal.insertPartientOfDay(id);
                 temp.Number = e.Number;
                 temp.PatientID = e.PartientID;
-                temp.RoomID = e.RoomID;     
+                temp.RoomID = e.RoomID;
                 temp.Room = getOneRoom(e.RoomID).Room;
                 return temp;
             }
@@ -652,7 +657,7 @@ namespace Project_WcfService
             temp.Number = result.Number;
             temp.PatientID = result.PartientID;
             temp.RoomID = result.RoomID;
-           
+            temp.Status = result.Status.Value;
             return temp;
         }
 
@@ -664,6 +669,7 @@ namespace Project_WcfService
                 temp.Number = e.Number;
                 temp.PartientID = e.PatientID;
                 temp.RoomID = e.RoomID;
+                temp.Status = e.Status;
                 potdal.updatePartientOfDay(temp);
                 return true;
             }

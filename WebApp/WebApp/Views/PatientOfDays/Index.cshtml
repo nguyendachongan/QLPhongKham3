@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<div class="main-content-inner" ng-controller="PatientOfDayController">
+<div class="main-content-inner" ng-controller="MyPatientController">
     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
@@ -34,7 +34,7 @@
                             <div class="pull-right tableTools-container"></div>
                         </div>
                         <div class="table-header">
-                            Drugs List
+                            Patients List
                         </div>
                         <table datatable="ng" dt-options="dtOptions" id="tbl" class="table  table-bordered table-hover">
                             <thead>
@@ -49,7 +49,7 @@
                                     <th>Gender</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th class="center" style="width:200px">Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
 
@@ -63,27 +63,15 @@
                                     <td ng-bind="x.Phone"></td>
                                     <td ng-bind="x.Address"></td>
                                     <td class="text-center">
-                                        <button class="btn btn-danger btn-sm" ng-click="showModal(x.PatientID)"><i class=" fa fa-pencil-square-o"></i></button>
-                                        <button class="btn btn-success btn-sm" data-toggle="tooltip"
-                                                title="{{x.Number == 0 ? '' : 'Number: '+x.Number + '\nRoom: ' + x.Room}}"
-                                                ng-class="{disabled:x.Number != 0}" ng-click="getNumber(x.PatientID)"
-                                                ng-disabled="x.Number != 0">
-                                            Get Number
-                                        </button>
+                                        <button class="btn btn-danger btn-sm" ng-click="showModal(x.PatientID)" ng-class="{disabled:x.Status}" ng-disabled="x.Status">{{x.Status?'Đã Khám':'Khám'}}</button>
                                     </td>
-
                                 </tr>
-
                             </tbody>
 
                         </table>
                         <!-- <button class="btn btn-info" ng-click="showModal(0)">Add</button>
                     </div><!-- /.span -->
                         <!-- Xử lý hiển thị số phân trang -->
-
-
-
-
                     </div><!-- /.row -->
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
@@ -91,43 +79,67 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
         <!-- Modal -->
-        <div id="DrugModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+        <div id="PrescriptionModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="modalTitle"></h4>
+                        <h4 class="modal-title" id="modalTitle">Phiếu khám bệnh</h4>
                     </div>
                     <div class="modal-body">
+                        <h4 style="padding-bottom:10px;">Thông tin bệnh nhân</h4>
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Name:</label>
+                                <label class="col-sm-6">CMND: {{IdentifyCard}}</label>
+                                <label class="col-sm-6">Tên bệnh nhân: {{LastName}} {{MiddleName}} {{FirstName}}</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-6">Giới tính: {{Gender?'Nam':'Nữ'}}</label>
+                                <label class="col-sm-6">Sđt: {{Phone}} </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12">Địa chỉ:  {{Address}}</label>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3">Kết quả khám bệnh:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" ng-model="Name" />
+                                    <input type="text" class="form-control" ng-model="Result" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Description:</label>
+                                <label class="col-sm-3 ">Ghi chú:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" ng-model="Description" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Price:</label>
-                                <div class="col-sm-9">
-                                    <input type="number" class="form-control" ng-model="Price" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Type:</label>
-                                <div class="col-sm-9">
-                                    <select ng-model="Type" ng-options="y.Type for (x,y) in types" class="form-control"></select>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+                        <hr />
+                        <h4>Toa thuốc <span class="pull-right"><i class="fa fa-plus " aria-hidden="true" ng-click="addNewPrescription()"></i></span></h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Tên thuốc</th>
+                                <th>Số lượng</th>
+                                <th>Số ngày</th>
+                                <th>Ghi chú</th>
+                                <th>Liều lượng</th>
+                                <th>Cách sử dụng</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="p in prescriptionDetails">
+                                <td><select ng-model="p.DrugID" ng-options="y.Name for (x,y) in drugs" class="form-control" style="width:auto"></select></td>
+                                <td><input type="number" class="form-control" ng-model="p.Quantity" /></td>
+                                <td><input type="number" class="form-control" ng-model="p.Day" /></td>
+                                <td><input type="text" class="form-control" ng-model="p.Description" /></td>
+                                <td><input type="text" class="form-control" ng-model="p.Dosage" /></td>
+                                <td><input type="text" class="form-control" ng-model="p.Usage" /></td>
+                                <td><i class="fa fa-minus " aria-hidden="true" ng-click="removePrescription($index)"></i></td>
+                            </tr>
+                        </table>
+                      </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" ng-click="saveData()" id="btnAddAction">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

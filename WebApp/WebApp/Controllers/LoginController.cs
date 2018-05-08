@@ -50,9 +50,27 @@ namespace WebApp.Controllers
                 //Code thao tác với database để kiểm tra user
                 if (rt != "" && model.Password == ObjPass[13])
                 {
+                    url = "http://localhost:6500/Service1.svc/getEmployee?id=" + ObjPass[4].Substring(1, 1);
+                    request = WebRequest.Create(url);
+                    response = request.GetResponse();
+                    dataStream = response.GetResponseStream();
+                    reader = new StreamReader(dataStream);
+                    rt = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
+                    Objrt = rt.Split(',');
+                    string[] ObjRole = rt.Split('"');
+                    HttpCookie userRole = new HttpCookie("userRole");
+                    userRole.Value = ObjRole[40].Substring(1, 1);
+                    Response.Cookies.Add(userRole);
+                    HttpCookie employeeID = new HttpCookie("employeeID");
+                    employeeID.Value = ObjPass[4].Remove(0,1);
+                    employeeID.Value = employeeID.Value.Remove(employeeID.Value.Length-1,1);
+                    Response.Cookies.Add(employeeID);
                     //Chức năng remember me 
                     bool isRememberMe = false;
                     FormsAuthentication.SetAuthCookie(model.UserName, isRememberMe);
+                    if (int.Parse(userRole.Value) == 2) return Redirect(ReturnUrl ?? "/PatientOfDays/Index");
                     return Redirect(ReturnUrl ?? "/");
                 }
                 else

@@ -46,6 +46,7 @@
                                         </label>
                                     </th>
                                     <th>Patient Name</th>
+                                    <th>Result</th>
                                     <th>Description</th>
                                     <th>Doctor Name</th>
                                     <th>Dispenser Name</th>
@@ -58,6 +59,7 @@
                                 <tr ng-repeat="x in prescriptions" id="{{x.ExaminationResultID}}">
                                     <td ng-bind="$index + 1"></td>
                                     <td>{{x.Patient.LastName}} {{x.Patient.MiddleName}} {{x.Patient.FirstName}}</td>
+                                    <td ng-bind="x.Result"></td>
                                     <td ng-bind="x.Description"></td>
                                     <td>{{x.Doctor.LastName}} {{x.Doctor.MiddleName}} {{x.Doctor.FirstName}}</td>
                                     <td>{{x.Dispenser.LastName}} {{x.Dispenser.MiddleName}} {{x.Dispenser.FirstName}}</td>

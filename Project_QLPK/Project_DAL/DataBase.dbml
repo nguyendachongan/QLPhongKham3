@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLPhongKhamT" Class="DataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ANNDH\MSSQLSERVER_2;Initial Catalog=QLPhongKhamT;Integrated Security=True" SettingsObjectName="Project_DAL.Properties.Settings" SettingsPropertyName="QLPhongKhamTConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyPhongKham" Class="DataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-1PI8VUA;Initial Catalog=QuanLyPhongKham;Integrated Security=True" SettingsObjectName="Project_DAL.Properties.Settings" SettingsPropertyName="QLPhongKhamTConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="UserName" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -96,14 +96,6 @@
       <Association Name="TypeOfDrug_Drug" Member="Drugs" ThisKey="TypeOfDrugID" OtherKey="TypeID" Type="Drug" />
     </Type>
   </Table>
-  <Table Name="dbo.PartientOfDay" Member="PartientOfDays">
-    <Type Name="PartientOfDay">
-      <Column Name="PartientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Patient_PartientOfDay" Member="Patient" ThisKey="PartientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Drug" Member="Drugs">
     <Type Name="Drug">
       <Column Name="DrugID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -127,10 +119,18 @@
       <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Employee_Account" Member="Accounts" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Account" />
       <Association Name="Employee_WorkSchedule" Member="WorkSchedules" ThisKey="EmployeeID" OtherKey="DoctorID" Type="WorkSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PartientOfDay" Member="PartientOfDays">
+    <Type Name="PartientOfDay">
+      <Column Name="PartientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Patient_PartientOfDay" Member="Patient" ThisKey="PartientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
