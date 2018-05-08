@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employees";
 }
 
 <div class="main-content-inner" ng-controller="EmployeeController">
@@ -54,7 +54,7 @@
                                     </th>
                                     <th>Identify Card</th>
                                     <th>Name</th>
-                                    <th>Birthday</th>
+                                   <!-- <th>Birthday</th> -->
                                     <th>Gender</th>
                                     <th>Phone</th>
                                     <th>Address</th>
@@ -70,14 +70,14 @@
                                     <td ng-bind="$index + 1"></td>
                                     <td ng-bind="x.IdentifyCard"></td>
                                     <td>{{x.LastName}} {{x.MiddleName}} {{x.FirstName}}</td>
-                                    <td>{{convertDate("\/Date(727981200000+0700)\/")}}</td>
+                                   <!-- <td>{{x.BirthDayString}}</td>-->
                                     <td>{{x.Gender?'Male':'Female'}}</td>
                                     <td ng-bind="x.Phone"></td>
                                     <td ng-bind="x.Address"></td>
-                                    <td>{{x.Position == 1 ? 'Admin' : (x.Position == 2 ? 'Doctor' : (x.Postion == 3 ? 'Dispenser' : 'Receptionist'))}}</td>
+                                    <td>{{x.Position == 1 ? 'Quản lý' : (x.Position == 2 ? 'Bác sĩ' : (x.Postion == 3 ? 'Nhân viên nhận bệnh' : 'Nhân viên phát thuốc'))}}</td>
                                     <td><i class="{{x.Active ? 'fa fa-check-square-o' : 'fa fa-square-o'}}" aria-hidden="true"></i></td>
                                     <td class="text-center">
-                                        <button ng-click="showModal(x.EmployeeID)"><i class="glyphicon glyphicon-edit text-primary"></i></button>
+                                        <button class="btn btn-danger btn-sm" ng-click="showModal(x.EmployeeID)"><i class=" fa fa-pencil-square-o"></i></button>
                                     </td>
 
                                 </tr>
@@ -99,7 +99,7 @@
             </div><!-- /.row -->
         </div><!-- /.page-content -->
         <!-- Modal -->
-        <div id="PatientModal" class="modal fade" role="dialog">
+        <div id="EmployeeModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -151,6 +151,18 @@
                                 <label class="col-sm-3 control-label">Address:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" ng-model="Address" />
+                                </div>
+                            </div>
+                         <!--   <div class="form-group">
+                                <label class="col-sm-3 control-label">BirthDay:</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" ng-model="BirthDay" value="{{BirthDay}}"/>
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Position:</label>
+                                <div class="col-sm-9">
+                                    <select ng-model="Position" ng-options="y.position for (x,y) in positions" class="form-control"></select>
                                 </div>
                             </div>
                         </div>

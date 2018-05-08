@@ -105,12 +105,7 @@
                         </a>
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li>
-                                <a href="chitietnguoidung?username=admin">
-                                    <i class="ace-icon fa fa-user"></i>
-                                    User
-                                </a>
-                            </li>
+                            
 
                             <li class="divider"></li>
 
@@ -158,25 +153,25 @@
                     </a>
                 </li>
 
-              <!--  <li class="">
-                    <a href="#!typeemployee" class="">
+                <li class="@(ViewBag.Employees==true? "active": "")">
+                    <a href="@Url.Action("Index", "Employees")" class="">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
-                        <span class="menu-text"> Employee Type</span>
+                        <span class="menu-text"> Employees</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#!product" class="">
+                <li class="@(ViewBag.Prescriptions==true? "active": "")">
+                    <a href="@Url.Action("Index", "Prescription")" class="">
                         <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text"> Product</span>
+                        <span class="menu-text"> Prescriptions</span>
                     </a>
                 </li>
 
-                <li class="">
-                    <a href="#!employee">
+                <li class="@(ViewBag.PatientOfDays==true? "active": "")">
+                    <a href="@Url.Action("Index", "PatientOfDays")">
                         <i class="menu-icon fa fa-list-alt"></i>
-                        <span class="menu-text">Employees</span>
+                        <span class="menu-text">My Patients</span>
                     </a>
-                </li>-->
+                </li>
 
 
             </ul><!-- /.nav-list -->
@@ -291,6 +286,9 @@
     <script src="../../script/angular-datatables.min.js"></script>
     <script src="../../script/PatientController.js"></script>
     <script src="../../script/DrugController.js"></script>
+    <script src="../../script/EmployeeController.js"></script>
+    <script src="../../script/PrescriptionController.js"></script>
+    <script src="../../script/PatientOfDayController.js"></script>
 </body>
 </html>
 
