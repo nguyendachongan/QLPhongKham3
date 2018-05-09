@@ -160,12 +160,20 @@ namespace Project_WcfService
         List<eExaminationResult> getAllExaminationResult();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "getAllExaminationResultsByPatient?id={id}")]
+        List<eExaminationResult> getAllExaminationResultByPatient(int id);
+        
+        [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ExaminationResults/new")]
-        bool insertExaminationResult(eExaminationResult e);
+        int insertExaminationResult(eExaminationResult e);
 
         [OperationContract]
         eExaminationResult getOneExaminationResult(int id);
@@ -229,13 +237,13 @@ namespace Project_WcfService
 
         // PrescriptionDetail
 
-        [OperationContract]
+       /* [OperationContract]
         [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "getAllPrescriptionDetail/")]
-        List<ePrescriptionDetail> getAllPrescriptionDetail();
+        List<ePrescriptionDetail> getAllPrescriptionDetail();*/
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -243,7 +251,7 @@ namespace Project_WcfService
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "PrescriptionDetails/new")]
-        bool insertPrescriptionDetail(ePrescriptionDetail e);
+        bool insertPrescriptionDetail(List<ePrescriptionDetail> e);
 
         [OperationContract]
         ePrescriptionDetail getOnePrescriptionDetail(int id);
@@ -427,11 +435,13 @@ namespace Project_WcfService
         [DataMember]
         public eEmployee Dispenser { get; set; }
         [DataMember]
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         [DataMember]
         public string Description { get; set; }
         [DataMember]
         public string Result { get; set; }
+        [DataMember]
+        public List<ePrescriptionDetail> listpd { get; set; }
     }
     public class ePatient
     {
@@ -480,6 +490,8 @@ namespace Project_WcfService
         public int ExaminationResultID { get; set; }
         [DataMember]
         public int DrugID { get; set; }
+        [DataMember]
+        public string DrugName { get; set; }
         [DataMember]
         public int Quantity { get; set; }
         [DataMember]

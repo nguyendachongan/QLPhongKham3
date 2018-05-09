@@ -18,14 +18,19 @@ namespace Project_DAL
         {
             return db.ExaminationResults.ToList();
         }
+        public List<ExaminationResult> getAllExaminationResultByPatient(int PatientID)
+        {
+            return db.ExaminationResults.Where(x => x.PatientID == PatientID && x.Time.Date != DateTime.Now).OrderByDescending(x => x.Time).Take(5).ToList();
+        }
         public ExaminationResult getOneExaminationResult(int Id)
         {
             return db.ExaminationResults.Where(x => x.ExaminationResultID == Id).FirstOrDefault();
         }
-        public void insertExaminationResult(ExaminationResult ExaminationResult)
+        public int insertExaminationResult(ExaminationResult ExaminationResult)
         {
             db.ExaminationResults.InsertOnSubmit(ExaminationResult);
             db.SubmitChanges();
+            return ExaminationResult.ExaminationResultID;
         }
         public void updateExaminationResult(ExaminationResult ExaminationResult)
         {

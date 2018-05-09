@@ -139,7 +139,35 @@
                                 <td><i class="fa fa-minus " aria-hidden="true" ng-click="removePrescription($index)"></i></td>
                             </tr>
                         </table>
+                        <h4>Toa thuốc cũ </h4>
+                        <div ng-repeat="e in examinationResults">
+                            <div class="bg-primary text-light" data-toggle="collapse" ng-attr-data-target="#{{e.ExaminationResultID}}">
+                                <h5>{{e.Time}} - Kết quả: <span title="{{e.Description}}">{{e.Result}}</span> - Bác sĩ: {{e.Doctor.LastName}} {{e.Doctor.MiddleName}} {{e.Doctor.FirstName}}</h5>
+                            </div>
+                            <div class="collapse" id="{{e.ExaminationResultID}}">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên thuốc</th>
+                                        <th>Số lượng</th>
+                                        <th>Số ngày</th>
+                                        <th>Ghi chú</th>
+                                        <th>Liều lượng</th>
+                                        <th>Cách sử dụng</th>
+                                    </tr>
+                                    <tr ng-repeat="p in e.listpd">
+                                        <td ng-bind="$index + 1"></td>
+                                        <td ng-bind="p.DrugName"></td>
+                                        <td ng-bind="p.Quantity"></td>
+                                        <td ng-bind="p.Day"></td>
+                                        <td ng-bind="p.Description"></td>
+                                        <td ng-bind="p.Dosage"></td>
+                                        <td ng-bind="p.Usage"></td>
+                                    </tr>
+                                </table>
+                            </div>
                       </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" ng-click="saveData()" id="btnAddAction">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

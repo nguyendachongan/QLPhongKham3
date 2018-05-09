@@ -14,9 +14,9 @@ namespace Project_DAL
         {
             db = new DataBaseDataContext();
         }
-        public List<PrescriptionDetail> getAllPrescriptionDetail()
+        public List<PrescriptionDetail> getAllPrescriptionDetail(int ExaminationID)
         {
-            return db.PrescriptionDetails.ToList();
+            return db.PrescriptionDetails.Where(x => x.ExaminationResultID == ExaminationID).ToList();
         }
         public PrescriptionDetail getOnePrescriptionDetail(int Id)
         {

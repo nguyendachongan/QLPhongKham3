@@ -7,6 +7,8 @@
     $scope.patient = {};
     $scope.drugs = [];
     $scope.prescriptionDetails = [];
+    $scope.examinationResults = [];
+
     var cookie = document.cookie;
     var doctorId = cookie.split('=').pop();
     //get data
@@ -30,6 +32,11 @@
                 $scope.Gender = $scope.patient.Gender ? 'Male' : 'Female';
                 $scope.Phone = $scope.patient.Phone;
                 $scope.Address = $scope.patient.Address;
+
+                $http.get('http://localhost:6500/Service1.svc/getAllExaminationResultsByPatient?id=' + id).then(function (res) {
+                    $scope.examinationResults = res.data;
+
+                });    
         });
             $scope.prescriptionDetails = [{ 'DrugID': $scope.drugs[0], 'Quantity': 1, 'Day': 1, 'Description': '', 'Dosage':'', 'Usage': ''}];
             $("#PrescriptionModal").modal('show');
@@ -51,8 +58,23 @@
             'DoctorID': doctorId,
             'PatientID': $scope.PatientID
         };
+        var PrescriptionDetails = [];
+        
+        console.log(PrescriptionDetails);
         $http.post("http://localhost:6500/Service1.svc/ExaminationResults/new", ExaminationResult).then(function (res) {
-            $http.post("http://localhost:6500/Service1.svc/PrescriptionDetails/new", $scope.prescriptionDetails).then(function (res) {
+            angular.forEach($scope.prescriptionDetails, function (value, key) {
+                var PrescriptionDetail = {
+                    'ExaminationResultID': res.data,
+                    'DrugID': value.DrugID.DrugID,
+                    'Quantity': value.Quantity,
+                    'Day': value.Day,
+                    'Description': value.Description,
+                    'Dosage': value.Dosage,
+                    'Usage': value.Usage
+                };
+                PrescriptionDetails.push(PrescriptionDetail);
+            });
+            $http.post("http://localhost:6500/Service1.svc/PrescriptionDetails/new", PrescriptionDetails).then(function (res) {
                 window.location.reload();
             });
         });

@@ -48,8 +48,8 @@ namespace Project_DAL
         public void updatePartientOfDay(PartientOfDay PartientOfDay)
         {
             var record = db.PartientOfDays.Where(x => x.PartientID == PartientOfDay.PartientID).FirstOrDefault();
-            record.Number = PartientOfDay.Number;
-            record.RoomID=PartientOfDay.RoomID;
+          //  record.Number = PartientOfDay.Number;
+          //  record.RoomID=PartientOfDay.RoomID;
             record.Status = PartientOfDay.Status;
             db.SubmitChanges();
         }
