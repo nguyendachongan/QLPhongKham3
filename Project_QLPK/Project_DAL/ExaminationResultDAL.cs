@@ -22,6 +22,10 @@ namespace Project_DAL
         {
             return db.ExaminationResults.Where(x => x.PatientID == PatientID && x.Time.Date != DateTime.Now).OrderByDescending(x => x.Time).Take(5).ToList();
         }
+        public List<ExaminationResult> getAllExaminationResultByDispenser()
+        {
+            return db.ExaminationResults.Where(x => x.DispenserID == null).OrderBy(x => x.Time).ToList();
+        }
         public ExaminationResult getOneExaminationResult(int Id)
         {
             return db.ExaminationResults.Where(x => x.ExaminationResultID == Id).FirstOrDefault();
@@ -35,12 +39,12 @@ namespace Project_DAL
         public void updateExaminationResult(ExaminationResult ExaminationResult)
         {
             var record = db.ExaminationResults.Where(x => x.ExaminationResultID == ExaminationResult.ExaminationResultID).FirstOrDefault();
-            record.DoctorID = ExaminationResult.DoctorID;
+           // record.DoctorID = ExaminationResult.DoctorID;
             record.DispenserID = ExaminationResult.DispenserID;
-            record.Time = ExaminationResult.Time;
-            record.Result = ExaminationResult.Result;
-            record.PatientID = ExaminationResult.PatientID;
-            record.Description = ExaminationResult.Description;
+          //  record.Time = ExaminationResult.Time;
+          //  record.Result = ExaminationResult.Result;
+          //  record.PatientID = ExaminationResult.PatientID;
+          //  record.Description = ExaminationResult.Description;
             db.SubmitChanges();
         }
     }

@@ -166,7 +166,15 @@ namespace Project_WcfService
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "getAllExaminationResultsByPatient?id={id}")]
         List<eExaminationResult> getAllExaminationResultByPatient(int id);
-        
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "getAllExaminationResultsByDispenser/")]
+        List<eExaminationResult> getAllExaminationResultByDispenser();
+
         [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,

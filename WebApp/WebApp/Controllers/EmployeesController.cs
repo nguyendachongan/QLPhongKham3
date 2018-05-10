@@ -13,6 +13,11 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             ViewBag.Employees = true;
+            var cookie = Request.Cookies["userRole"];
+            ViewBag.userRole = int.Parse(cookie.Value);
+
+            var employeeID = Request.Cookies["EmployeeID"];
+            ViewBag.employeeID = int.Parse(employeeID.Value);
             return View();
         }
     }

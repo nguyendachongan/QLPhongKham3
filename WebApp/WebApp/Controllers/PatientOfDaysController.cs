@@ -18,6 +18,10 @@ namespace WebApp.Controllers
 
             var employeeID = Request.Cookies["EmployeeID"];
             ViewBag.employeeID = int.Parse(employeeID.Value);
+
+            if (ViewBag.userRole == 1) return Redirect("/Drugs/Index");
+            if (ViewBag.userRole == 3) return Redirect("/Patients/Index");
+            if (ViewBag.userRole == 4) return Redirect("/Prescription/Index");
             return View();
         }
     }

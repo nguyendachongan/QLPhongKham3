@@ -72,12 +72,15 @@
                                     <td ng-bind="x.Address"></td>
                                     <td class="text-center">
                                         <button class="btn btn-danger btn-sm" ng-click="showModal(x.PatientID)"><i class= " fa fa-pencil-square-o"></i></button>
-                                        <button  class="btn btn-success btn-sm" data-toggle="tooltip" 
-                                        title="{{x.Number == 0 ? '' : 'Number: '+x.Number + '\nRoom: ' + x.Room}}" 
-                                        ng-class="{disabled:x.Number != 0}" ng-click="getNumber(x.PatientID)" 
-                                        ng-disabled="x.Number != 0">Get Number</button>
+                                       @if (ViewBag.userRole == 3)
+                                       {    <button  class="btn btn-success btn-sm" data-toggle="tooltip" 
+                                            title="{{x.Number == 0 ? '' : 'Number: '+x.Number + '\nRoom: ' + x.Room}}" 
+                                            ng-class="{disabled:x.Number != 0}" ng-click="getNumber(x.PatientID)" 
+                                            ng-disabled="x.Number != 0">Get Number</button>
+                                        }
                                     </td>
-                                    
+
+
                                 </tr>
 
                             </tbody>

@@ -49,6 +49,12 @@
             // <-- Select the height of the body width: 100%;
             position: absolute;
         }
+        .table-header
+        {
+            padding:5px;
+            margin-bottom:5px;
+            cursor:pointer;
+        }
     </style>
     <!--[if lte IE 9]>
       <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -148,18 +154,21 @@
 
                 </li>
 
+                <li class="@(ViewBag.Employees == true ? "active" : "")">
+                    <a href="@Url.Action("Index", "Employees")" class="">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> Employees</span>
+                    </a>
+                </li>
+
+            }
+            @if (ViewBag.userRole == 1 || ViewBag.userRole == 3)
+            {
+
                 <li class="@(ViewBag.Patients == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Patients")" class="">
                         <i class="menu-icon fa fa-home"></i>
                         <span class="menu-text"> Patients</span>
-                    </a>
-                </li>
-            }
-            @if (ViewBag.userRole == 1 || ViewBag.userRole == 3)
-            {    <li class="@(ViewBag.Employees == true ? "active" : "")">
-                    <a href="@Url.Action("Index", "Employees")" class="">
-                        <i class="menu-icon fa fa-pencil-square-o"></i>
-                        <span class="menu-text"> Employees</span>
                     </a>
                 </li>
             }

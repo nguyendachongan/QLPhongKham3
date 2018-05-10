@@ -441,20 +441,24 @@ namespace Project_WcfService
                 e.EmployeeID = result.EmployeeID;
                 temp.Doctor = e;
                 temp.ExaminationResultID = record.ExaminationResultID;
-                result = empdal.getOneEmployee(Convert.ToInt32(record.DispenserID));
-                e.Active = result.Active;
-                e.Address = result.Address;
-                e.BirthDay = result.BirthDay;
-                e.FirstName = result.FirstName;
-                e.Gender = result.Gender;
-                e.IdentifyCard = result.IdentifyCard;
-                e.LastName = result.LastName;
-                e.MiddleName = result.MiddleName;
-                e.Phone = result.Phone;
-                e.Position = result.Position;
-                e.IdentifyCard = result.IdentifyCard;
-                e.EmployeeID = result.EmployeeID;
-                temp.Dispenser = e;
+                if (record.DispenserID.HasValue)
+                {
+                    result = empdal.getOneEmployee(record.DispenserID.Value);
+                    e.Active = result.Active;
+                    e.Address = result.Address;
+                    e.BirthDay = result.BirthDay;
+                    e.FirstName = result.FirstName;
+                    e.Gender = result.Gender;
+                    e.IdentifyCard = result.IdentifyCard;
+                    e.LastName = result.LastName;
+                    e.MiddleName = result.MiddleName;
+                    e.Phone = result.Phone;
+                    e.Position = result.Position;
+                    e.IdentifyCard = result.IdentifyCard;
+                    e.EmployeeID = result.EmployeeID;
+                    temp.Dispenser = e;
+                }
+
                 ePatient tem = new ePatient();
                 Patient p = patientdal.getOnePatient(record.PatientID);
                 tem.FirstName = p.FirstName;
@@ -541,6 +545,59 @@ namespace Project_WcfService
             return ls;
         }
 
+        public List<eExaminationResult> getAllExaminationResultByDispenser()
+        {
+            List<eExaminationResult> ls = new List<eExaminationResult>();
+            foreach (ExaminationResult record in erdal.getAllExaminationResultByDispenser())
+            {
+                eExaminationResult temp = new eExaminationResult();
+                temp.Description = record.Description;
+                Employee result = empdal.getOneEmployee(record.DoctorID);
+                eEmployee e = new eEmployee();
+                e.Active = result.Active;
+                e.Address = result.Address;
+                e.BirthDay = result.BirthDay;
+                e.FirstName = result.FirstName;
+                e.Gender = result.Gender;
+                e.IdentifyCard = result.IdentifyCard;
+                e.LastName = result.LastName;
+                e.MiddleName = result.MiddleName;
+                e.Phone = result.Phone;
+                e.Position = result.Position;
+                e.IdentifyCard = result.IdentifyCard;
+                e.EmployeeID = result.EmployeeID;
+                temp.Doctor = e;
+                temp.ExaminationResultID = record.ExaminationResultID;
+                ePatient tem = new ePatient();
+                Patient p = patientdal.getOnePatient(record.PatientID);
+                tem.FirstName = p.FirstName;
+                tem.LastName = p.LastName;
+                tem.MiddleName = p.MiddleName;
+                temp.Patient = tem;
+                temp.Time = record.Time.ToShortDateString();
+                temp.Result = record.Result;
+                List<ePrescriptionDetail> lspd = new List<ePrescriptionDetail>();
+                foreach (PrescriptionDetail pd in presdal.getAllPrescriptionDetail(record.ExaminationResultID))
+                {
+                    ePrescriptionDetail temp1 = new ePrescriptionDetail();
+                    temp1.Day = pd.Day;
+                    temp1.Description = pd.Description;
+                    temp1.Dosage = pd.Dosage;
+                    temp1.DrugID = pd.DrugID;
+                    temp1.DrugName = drugdal.getOneDrug(pd.DrugID).Name;
+                    temp1.ExaminationResultID = pd.ExaminationResultID;
+                    temp1.PrescriptionDetailID = pd.PrescriptionDetailID;
+                    temp1.Price = Convert.ToDouble(pd.Price);
+                    temp1.Quantity = pd.Quantity;
+                    temp1.Usage = pd.Usage;
+
+                    lspd.Add(temp1);
+                }
+                temp.listpd = lspd;
+                ls.Add(temp);
+            }
+            return ls;
+        }
 
         public int insertExaminationResult(eExaminationResult e)
         {
@@ -792,7 +849,7 @@ namespace Project_WcfService
                     temp.DrugID = i.DrugID;
                     temp.ExaminationResultID = i.ExaminationResultID;
                     temp.PrescriptionDetailID = i.PrescriptionDetailID;
-                    temp.Price = Convert.ToDecimal(i.Price);
+                    temp.Price = drugdal.getOneDrug(i.DrugID).Price;
                     temp.Quantity = i.Quantity;
                     temp.Usage = i.Usage;
                     presdal.insertPrescriptionDetail(temp);

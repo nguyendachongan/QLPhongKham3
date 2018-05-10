@@ -140,8 +140,9 @@
                             </tr>
                         </table>
                         <h4>Toa thuốc cũ </h4>
+                        <p ng-if="examinationResults.length == 0">Chưa có toa thuốc</p>
                         <div ng-repeat="e in examinationResults">
-                            <div class="bg-primary text-light" data-toggle="collapse" ng-attr-data-target="#{{e.ExaminationResultID}}">
+                            <div class="table-header" data-toggle="collapse" ng-attr-data-target="#{{e.ExaminationResultID}}">
                                 <h5>{{e.Time}} - Kết quả: <span title="{{e.Description}}">{{e.Result}}</span> - Bác sĩ: {{e.Doctor.LastName}} {{e.Doctor.MiddleName}} {{e.Doctor.FirstName}}</h5>
                             </div>
                             <div class="collapse" id="{{e.ExaminationResultID}}">
@@ -179,3 +180,4 @@
     </div>
 </div>
 
+    </div>

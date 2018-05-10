@@ -11,6 +11,11 @@ namespace WebApp.Controllers
         // GET: Prescription
         public ActionResult Index()
         {
+            ViewBag.Prescription = true;
+            var cookie = Request.Cookies["userRole"];
+            ViewBag.userRole = int.Parse(cookie.Value);
+            if (ViewBag.userRole == 2) return Redirect("/PatientOfDays/Index");
+            if (ViewBag.userRole == 3) return Redirect("/Patients/Index");
             return View();
         }
     }
