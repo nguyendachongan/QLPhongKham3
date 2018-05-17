@@ -40,6 +40,12 @@ namespace Project_WcfService
                 temp.EmployeeId = record.EmployeeID;
                 temp.UserName = record.UserName;
                 temp.Password = record.Password;
+                Employee e = empdal.getOneEmployee(temp.EmployeeId);
+                temp.FirstName = e.FirstName;
+                temp.LastName = e.LastName;
+                temp.MiddleName = e.MiddleName;
+                temp.Position = e.Position;
+                temp.Active = e.Active;
                 ls.Add(temp);
             }
             return ls;
@@ -306,8 +312,7 @@ namespace Project_WcfService
                 eEmployee temp = new eEmployee();
                 temp.Active = record.Active;
                 temp.Address = record.Address;
-                temp.BirthDay = record.BirthDay;
-                temp.BirthDayString = temp.BirthDay.ToString("yyyy-MM-dd");
+                temp.BirthDay = record.BirthDay.ToString("yyyy-MM-dd");
                 temp.FirstName = record.FirstName;
                 temp.Gender = record.Gender;
                 temp.IdentifyCard = record.IdentifyCard;
@@ -329,8 +334,7 @@ namespace Project_WcfService
                 eEmployee temp = new eEmployee();
                 temp.Active = record.Active;
                 temp.Address = record.Address;
-                temp.BirthDay = record.BirthDay;
-                temp.BirthDayString = record.BirthDay.ToString("yyyy-MM-dd");
+                temp.BirthDay = record.BirthDay.ToString("yyyy-MM-dd");
                 temp.FirstName = record.FirstName;
                 temp.Gender = record.Gender;
                 temp.IdentifyCard = record.IdentifyCard;
@@ -352,7 +356,7 @@ namespace Project_WcfService
                 Employee temp = new Employee();
                 temp.Active = e.Active;
                 temp.Address = e.Address;
-                temp.BirthDay = e.BirthDay;
+                temp.BirthDay = DateTime.ParseExact(e.BirthDay, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 temp.FirstName = e.FirstName;
                 temp.Gender = e.Gender;
                 temp.IdentifyCard = e.IdentifyCard;
@@ -377,9 +381,8 @@ namespace Project_WcfService
             eEmployee e = new eEmployee();
             e.Active = result.Active;
             e.Address = result.Address;
-            e.BirthDay =  result.BirthDay;
+            e.BirthDay =  result.BirthDay.ToString("yyyy-MM-dd");
             e.FirstName = result.FirstName;
-            e.BirthDayString = result.BirthDay.ToString("yyyy-MM-dd");
             e.Gender = result.Gender;
             e.IdentifyCard = result.IdentifyCard;
             e.LastName = result.LastName;
@@ -397,7 +400,7 @@ namespace Project_WcfService
                 Employee temp = new Employee();
                 temp.Active = e.Active;
                 temp.Address = e.Address;
-                temp.BirthDay = e.BirthDay;
+                temp.BirthDay = DateTime.ParseExact(e.BirthDay, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 temp.FirstName = e.FirstName;
                 temp.Gender = e.Gender;
                 temp.IdentifyCard = e.IdentifyCard;
@@ -429,7 +432,7 @@ namespace Project_WcfService
                 eEmployee e = new eEmployee();
                 e.Active = result.Active;
                 e.Address = result.Address;
-                e.BirthDay = result.BirthDay;
+                e.BirthDay = result.BirthDay.ToString("yyyy-MM-dd");
                 e.FirstName = result.FirstName;
                 e.Gender = result.Gender;
                 e.IdentifyCard = result.IdentifyCard;
@@ -446,7 +449,7 @@ namespace Project_WcfService
                     result = empdal.getOneEmployee(record.DispenserID.Value);
                     e.Active = result.Active;
                     e.Address = result.Address;
-                    e.BirthDay = result.BirthDay;
+                    e.BirthDay = result.BirthDay.ToString("yyyy-MM-dd");
                     e.FirstName = result.FirstName;
                     e.Gender = result.Gender;
                     e.IdentifyCard = result.IdentifyCard;
@@ -484,7 +487,7 @@ namespace Project_WcfService
                 eEmployee e = new eEmployee();
                 e.Active = result.Active;
                 e.Address = result.Address;
-                e.BirthDay = result.BirthDay;
+                e.BirthDay = result.BirthDay.ToString("yyyy-MM-dd");
                 e.FirstName = result.FirstName;
                 e.Gender = result.Gender;
                 e.IdentifyCard = result.IdentifyCard;
@@ -501,7 +504,7 @@ namespace Project_WcfService
                     result = empdal.getOneEmployee(record.DispenserID.Value);
                     e.Active = result.Active;
                     e.Address = result.Address;
-                    e.BirthDay = result.BirthDay;
+                    e.BirthDay = result.BirthDay.ToString("yyyy-MM-dd");
                     e.FirstName = result.FirstName;
                     e.Gender = result.Gender;
                     e.IdentifyCard = result.IdentifyCard;
@@ -556,7 +559,7 @@ namespace Project_WcfService
                 eEmployee e = new eEmployee();
                 e.Active = result.Active;
                 e.Address = result.Address;
-                e.BirthDay = result.BirthDay;
+                e.BirthDay = result.BirthDay.ToString("yyyy-MM-dd");
                 e.FirstName = result.FirstName;
                 e.Gender = result.Gender;
                 e.IdentifyCard = result.IdentifyCard;

@@ -42,8 +42,9 @@
             $scope.Gender = 'Male';
             $scope.Phone = "";
             $scope.Address = "";
-            $scope.BirthDay = new Date();
+            $scope.BirthDay = Date.now().toString();
             $scope.Position = $scope.positions[0];
+            $scope.Active = true;
         } else {
             $("#modalTitle").text("Edit Employee");
             $("#btnAddAction").text("Update");
@@ -59,7 +60,8 @@
                 $scope.Phone = $scope.employee.Phone;
                 $scope.Address = $scope.employee.Address;
                 $scope.BirthDay = $scope.employee.BirthDay;
-                $scope.Position = $scope.positions[$scope.employee.Position-1];
+                $scope.Position = $scope.positions[$scope.employee.Position - 1];
+                $scope.Active = $scope.employee.Active;
             });
         }
         $("#EmployeeModal").modal('show');
@@ -67,6 +69,7 @@
 
     //save 
     $scope.saveData = function () {
+        var BirthDay = $filter('date')($scope.BirthDay, 'yyyy-MM-dd');
         if ($scope.id == 0) {
             var params = {
                 'IdentifyCard': $scope.IdentifyCard,
@@ -76,11 +79,15 @@
                 'Gender': $scope.Gender == 'Male' ? true : false,
                 'Phone': $scope.Phone,
                 'Address': $scope.Address,
-                'Position': $scope.Position.id
+                'Position': $scope.Position.id,
+                'BirthDay': BirthDay,
+                'Active': $scope.Active
             };
-            /*$http.post("http://localhost:6500/Service1.svc/Employees/new", params).then(function (res) {
+            console.log(params);
+
+            $http.post("http://localhost:6500/Service1.svc/Employees/new", params).then(function (res) {
                 window.location.reload();
-            });*/
+            });
         }
         else {
             var params = {
@@ -92,9 +99,11 @@
                 'Gender': $scope.Gender == 'Male' ? true : false,
                 'Phone': $scope.Phone,
                 'Address': $scope.Address,
-                'Position': $scope.Position
+                'Position': $scope.Position.id,
+                'BirthDay': BirthDay,
+                'Active': $scope.Active
             };
-
+            console.log(params);
             $http.put("http://localhost:6500/Service1.svc/Employees/edit", params).then(function (res) {
                 window.location.reload();
             });

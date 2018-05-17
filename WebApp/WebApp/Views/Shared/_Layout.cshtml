@@ -148,7 +148,7 @@
                     <a href="@Url.Action("Index", "Drugs")" class="">
                         <i class="menu-icon fa fa-user"></i>
                         <span class="menu-text">
-                            Drugs
+                            Quản lý thuốc
                         </span>
                     </a>
 
@@ -157,18 +157,28 @@
                 <li class="@(ViewBag.Employees == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Employees")" class="">
                         <i class="menu-icon fa fa-pencil-square-o"></i>
-                        <span class="menu-text"> Employees</span>
+                        <span class="menu-text">Quản lý nhân viên</span>
                     </a>
                 </li>
 
+
+                <li class="@(ViewBag.Account == true ? "active" : "")">
+                    <a href="@Url.Action("Index", "Account")" class="">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text">Quản lý tài khoản</span>
+                    </a>
+                </li>
+
+
             }
+
             @if (ViewBag.userRole == 1 || ViewBag.userRole == 3)
             {
 
                 <li class="@(ViewBag.Patients == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Patients")" class="">
                         <i class="menu-icon fa fa-home"></i>
-                        <span class="menu-text"> Patients</span>
+                        <span class="menu-text"> Quản lý bệnh nhân</span>
                     </a>
                 </li>
             }
@@ -177,7 +187,7 @@
                 <li class="@(ViewBag.Prescriptions == true ? "active" : "")">
                     <a href="@Url.Action("Index", "Prescription")" class="">
                         <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text"> Prescriptions</span>
+                        <span class="menu-text"> Quản lý toa thuốc</span>
                     </a>
                 </li>
             }
@@ -186,7 +196,7 @@
               {  <li class="@(ViewBag.PatientOfDays == true ? "active" : "")">
                     <a href="@Url.Action("Index", "PatientOfDays")">
                         <i class="menu-icon fa fa-list-alt"></i>
-                        <span class="menu-text">My Patients</span>
+                        <span class="menu-text">Danh sách bệnh nhân</span>
                     </a>
                 </li>
               }
@@ -306,6 +316,7 @@
     <script src="../../script/EmployeeController.js"></script>
     <script src="../../script/PrescriptionController.js"></script>
     <script src="../../script/MyPatientController.js"></script>
+    <script src="../../script/AccountController.js"></script>
 </body>
 </html>
 

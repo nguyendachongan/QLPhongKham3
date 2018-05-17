@@ -11,6 +11,9 @@ namespace WebApp.Controllers
         // GET: Account
         public ActionResult Index()
         {
+            ViewBag.Account = true;
+            var cookie = Request.Cookies["userRole"];
+            ViewBag.userRole = int.Parse(cookie.Value);
 
             if (ViewBag.userRole == 2) return Redirect("/PatientOfDays/Index");
             if (ViewBag.userRole == 3) return Redirect("/Patients/Index");

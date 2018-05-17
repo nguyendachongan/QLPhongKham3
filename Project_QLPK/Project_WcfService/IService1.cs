@@ -409,9 +409,7 @@ namespace Project_WcfService
         [DataMember]
         public string MiddleName { get; set; }
         [DataMember]
-        public DateTime BirthDay { get; set; }
-        [DataMember]
-        public string BirthDayString { get; set; }
+        public string BirthDay { get; set; }
         [DataMember]
         public string IdentifyCard { get; set; }
         [DataMember]

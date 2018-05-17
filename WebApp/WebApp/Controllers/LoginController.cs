@@ -61,7 +61,7 @@ namespace WebApp.Controllers
                     Objrt = rt.Split(',');
                     string[] ObjRole = rt.Split('"');
                     HttpCookie userRole = new HttpCookie("userRole");
-                    userRole.Value = ObjRole[40].Substring(1, 1);
+                    userRole.Value = ObjRole[36].Substring(1, 1);
                     Response.Cookies.Add(userRole);
                     HttpCookie employeeID = new HttpCookie("employeeID");
                     employeeID.Value = ObjPass[4].Remove(0,1);
