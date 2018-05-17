@@ -15,20 +15,20 @@
     $scope.showModal = function (id) {
         $scope.id = id;
         if (id == 0) {
-            $("#modalTitle").text("New Patient");
-            $("#btnAddAction").text("Add");
+            $("#modalTitle").text("Thêm bệnh nhân");
+            $("#btnAddAction").text("Thêm");
 
             $scope.IdentifyCard = "";
             $scope.FirstName = "";
             $scope.LastName = "";
             $scope.MiddleName = "";
-            $scope.Gender = 'Male';
+            $scope.Gender = 'Nam';
             $scope.Phone = "";
             $scope.Address = "";
 
         } else {
-            $("#modalTitle").text("Edit Patient");
-            $("#btnAddAction").text("Update");
+            $("#modalTitle").text("Cập nhật bệnh nhân");
+            $("#btnAddAction").text("Cập nhật");
 
             //find selected item
             $http.get('http://localhost:6500/Service1.svc/getPatient?id=' + id).then(function (res) {
@@ -37,7 +37,7 @@
                 $scope.FirstName = $scope.patient.FirstName;
                 $scope.MiddleName = $scope.patient.MiddleName;
                 $scope.LastName = $scope.patient.LastName;
-                $scope.Gender = $scope.patient.Gender?'Male':'Female';
+                $scope.Gender = $scope.patient.Gender?'Nam':'Nữ';
                 $scope.Phone = $scope.patient.Phone;
                 $scope.Address = $scope.patient.Address;
             });
@@ -53,7 +53,7 @@
                 'FirstName' : $scope.FirstName,
                 'MiddleName' : $scope.MiddleName,
                 'LastName' : $scope.LastName,
-                'Gender' : $scope.Gender == 'Male' ? true : false,
+                'Gender' : $scope.Gender == 'Nam' ? true : false,
                 'Phone' : $scope.Phone,
                 'Address' : $scope.Address
             };
@@ -69,7 +69,7 @@
                 'FirstName': $scope.FirstName,
                 'MiddleName': $scope.MiddleName,
                 'LastName': $scope.LastName,
-                'Gender': $scope.Gender == 'Male' ? true : false,
+                'Gender': $scope.Gender == 'Nam' ? true : false,
                 'Phone': $scope.Phone,
                 'Address': $scope.Address
             };

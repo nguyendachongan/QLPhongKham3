@@ -32,22 +32,22 @@
     $scope.showModal = function (id) {
         $scope.id = id;
         if (id == 0) {
-            $("#modalTitle").text("New Employee");
-            $("#btnAddAction").text("Add");
+            $("#modalTitle").text("Thêm nhân viên");
+            $("#btnAddAction").text("Thêm");
 
             $scope.IdentifyCard = "";
             $scope.FirstName = "";
             $scope.LastName = "";
             $scope.MiddleName = "";
-            $scope.Gender = 'Male';
+            $scope.Gender = 'Nam';
             $scope.Phone = "";
             $scope.Address = "";
             $scope.BirthDay = Date.now().toString();
             $scope.Position = $scope.positions[0];
             $scope.Active = true;
         } else {
-            $("#modalTitle").text("Edit Employee");
-            $("#btnAddAction").text("Update");
+            $("#modalTitle").text("Cập nhật nhân viên");
+            $("#btnAddAction").text("Cập nhật");
 
             //find selected item
             $http.get('http://localhost:6500/Service1.svc/getEmployee?id=' + id).then(function (res) {
@@ -56,7 +56,7 @@
                 $scope.FirstName = $scope.employee.FirstName;
                 $scope.MiddleName = $scope.employee.MiddleName;
                 $scope.LastName = $scope.employee.LastName;
-                $scope.Gender = $scope.employee.Gender ? 'Male' : 'Female';
+                $scope.Gender = $scope.employee.Gender ? 'Nam' : 'Nữ';
                 $scope.Phone = $scope.employee.Phone;
                 $scope.Address = $scope.employee.Address;
                 $scope.BirthDay = $scope.employee.BirthDay;
@@ -76,7 +76,7 @@
                 'FirstName': $scope.FirstName,
                 'MiddleName': $scope.MiddleName,
                 'LastName': $scope.LastName,
-                'Gender': $scope.Gender == 'Male' ? true : false,
+                'Gender': $scope.Gender == 'Nam' ? true : false,
                 'Phone': $scope.Phone,
                 'Address': $scope.Address,
                 'Position': $scope.Position.id,
@@ -96,7 +96,7 @@
                 'FirstName': $scope.FirstName,
                 'MiddleName': $scope.MiddleName,
                 'LastName': $scope.LastName,
-                'Gender': $scope.Gender == 'Male' ? true : false,
+                'Gender': $scope.Gender == 'Nam' ? true : false,
                 'Phone': $scope.Phone,
                 'Address': $scope.Address,
                 'Position': $scope.Position.id,

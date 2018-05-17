@@ -470,7 +470,24 @@ namespace Project_WcfService
                 temp.Patient = tem;
                 temp.Time = record.Time.ToShortDateString();
                 temp.Result = record.Result;
-                
+                List<ePrescriptionDetail> lspd = new List<ePrescriptionDetail>();
+                foreach (PrescriptionDetail pd in presdal.getAllPrescriptionDetail(record.ExaminationResultID))
+                {
+                    ePrescriptionDetail temp1 = new ePrescriptionDetail();
+                    temp1.Day = pd.Day;
+                    temp1.Description = pd.Description;
+                    temp1.Dosage = pd.Dosage;
+                    temp1.DrugID = pd.DrugID;
+                    temp1.DrugName = drugdal.getOneDrug(pd.DrugID).Name;
+                    temp1.ExaminationResultID = pd.ExaminationResultID;
+                    temp1.PrescriptionDetailID = pd.PrescriptionDetailID;
+                    temp1.Price = Convert.ToDouble(pd.Price);
+                    temp1.Quantity = pd.Quantity;
+                    temp1.Usage = pd.Usage;
+
+                    lspd.Add(temp1);
+                }
+                temp.listpd = lspd;
                 ls.Add(temp);
             }
             return ls;

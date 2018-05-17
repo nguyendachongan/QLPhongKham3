@@ -11,7 +11,7 @@
     </div>
 
     <div class="page-content">
-        
+
         <h1>
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
@@ -30,10 +30,10 @@
                         <div class="clearfix">
                             <div class="pull-right tableTools-container"></div>
                         </div>
-                           <p ng-if="prescriptions.length == 0"></p>
-                        <div ng-repeat="e in prescriptions" >
+                        <p ng-if="prescriptions.length == 0"></p>
+                        <div ng-repeat="e in prescriptions_admin">
                             <div class="table-header" data-toggle="collapse" ng-attr-data-target="#{{e.ExaminationResultID}}">
-                                <h5>Bệnh nhân: {{e.Patient.LastName}} {{e.Patient.MiddleName}} {{e.Patient.FirstName}} - Kết quả: <span title="{{e.Description}}">{{e.Result}}</span> - Bác sĩ: {{e.Doctor.LastName}} {{e.Doctor.MiddleName}} {{e.Doctor.FirstName}}</h5>
+                                <h5>Ngày: {{e.Time}} - Bệnh nhân: {{e.Patient.LastName}} {{e.Patient.MiddleName}} {{e.Patient.FirstName}} - Kết quả: <span title="{{e.Description}}">{{e.Result}}</span> - Bác sĩ: {{e.Doctor.LastName}} {{e.Doctor.MiddleName}} {{e.Doctor.FirstName}}</h5>
                             </div>
                             <div class="collapse" id="{{e.ExaminationResultID}}">
                                 <table class="table table-bordered" ng-init="Total = 0;">
@@ -41,7 +41,10 @@
                                         <th>#</th>
                                         <th>Tên thuốc</th>
                                         <th>Số lượng</th>
-                                        <th>Ghi chú</th>
+                                        <th>Số Ngày</th>
+                                        <th>Ghi chú </th>
+                                        <th>Liều lượng</th>
+                                        <th>Cách sử dụng</th>
                                         <th>Đơn giá</th>
                                         <th>Thành tiền</th>
                                     </tr>
@@ -49,17 +52,20 @@
                                         <td ng-bind="$index + 1"></td>
                                         <td ng-bind="p.DrugName"></td>
                                         <td ng-bind="p.Quantity"></td>
+                                        <td ng-bind="p.Day"></td>
                                         <td ng-bind="p.Description"></td>
+                                        <td ng-bind="p.Dosage"></td>
+                                        <td ng-bind="p.Usage"></td>
                                         <td ng-bind="p.Price"></td>
-                                        <td  ng-init="itemTotal = p.Price * p.Quantity; $parent.Total = $parent.Total + itemTotal ">{{itemTotal}}</td>
+                                        <td ng-init="itemTotal = p.Price * p.Quantity; $parent.Total = $parent.Total + itemTotal ">{{itemTotal}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="100%">
                                             <b>
                                                 Tổng tiền: {{Total}}
-                                               @if (ViewBag.userRole == 4)
-                                               {<span class="pull-right btn btn-primary" ng-click="phatThuoc(e)">Phát thuốc</span>
-                                               }
+                                                @if (ViewBag.userRole == 4)
+                                                {<span class="pull-right btn btn-primary" ng-click="phatThuoc(e)">Phát thuốc</span>
+                                                }
                                             </b>
                                         </td>
                                     </tr>
@@ -82,4 +88,3 @@
         <!-- Modal -->
     </div>
 </div>
-
